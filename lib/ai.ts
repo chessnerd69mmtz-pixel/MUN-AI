@@ -1,8 +1,13 @@
 import OpenAI from "openai"
 
-type Provider = "groq" | "mistral" | "vireonix"
+type Provider = "openai" | "groq" | "mistral" | "vireonix"
 
 function clientFor(provider: Provider) {
+  if (provider === "openai") {
+    const key = process.env.OPENAI_API_KEY
+    if (!key) throw new Error("OPENAI_API_KEY is not configured.")
+    return new OpenAI({ apiKey: key })
+  }
   if (provider === "groq") {
     const key = process.env.GROQ_API_KEY
     if (!key) throw new Error("GROQ_API_KEY is not configured.")
@@ -18,11 +23,11 @@ function clientFor(provider: Provider) {
 }
 
 export function providerName(p: Provider) {
-  return p === "groq" ? "Groq" : p === "mistral" ? "Mistral" : "Vireonix"
+  return p === "openai" ? "OpenAI" : p === "groq" ? "Groq" : p === "mistral" ? "Mistral" : "Vireonix"
 }
 
 export async function chatWithFallback(options: any, opts?: { includeGroqCompound?: boolean }) {
-  const providers: Provider[] = ["groq", "mistral", "vireonix"]
+  const providers: Provider[] = ["openai", "groq", "mistral", "vireonix"]
   let lastError: any = null
   for (const provider of providers) {
     try {
@@ -30,7 +35,9 @@ export async function chatWithFallback(options: any, opts?: { includeGroqCompoun
         const c = await clientFor(provider).chat.completions.create(options as any)
         return { completion: c, provider }
       }
-      const model = provider === "groq"
+      const model = provider === "openai"
+        ? (process.env.OPENAI_MODEL || "gpt-5.6-luna")
+        : provider === "groq"
         ? (process.env.GROQ_WRITING_MODEL || "openai/gpt-oss-120b")
         : provider === "mistral"
           ? (process.env.MISTRAL_MODEL || "mistral-small-latest")
