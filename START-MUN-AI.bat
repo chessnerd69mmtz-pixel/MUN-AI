@@ -54,7 +54,7 @@ if not exist "node_modules" (
   )
 )
 
-if not exist ".nextBUILD_ID" (
+if not exist ".next\BUILD_ID" (
   echo A production build is missing. Running setup/build...
   echo.
   call "%~dp0setup.bat"
