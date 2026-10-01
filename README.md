@@ -43,8 +43,8 @@ Vireonix does not require a key and is used only as the final general-generation
 ## Setup
 
 1. Install Node.js LTS.
-2. Create your own Groq, Mistral and Unlimitless keys using the official links above.
-3. Double-click `setup.bat` and enter all three keys locally.
+2. Create your own OpenAI key if you want to use OpenAI, plus the Groq, Mistral and Unlimitless keys you want enabled.
+3. Double-click `setup.bat` and enter the keys locally. OpenAI is optional; Groq, Mistral and Unlimitless remain required by the current local setup flow.
 4. Double-click `START-MUN-AI.bat`.
 5. Open `http://localhost:3000` if the browser does not open automatically.
 
