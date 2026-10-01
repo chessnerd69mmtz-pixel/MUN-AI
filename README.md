@@ -6,19 +6,26 @@ A local MUN command center for research, strategy, live committee support, posit
 
 This repository does **not** contain developer API keys. Every user running MUN AI must create and enter their own keys during `setup.bat`.
 
-### 1. Groq
+### 1. OpenAI
+Create an OpenAI API key here:
+
+https://platform.openai.com/api-keys
+
+MUN AI uses OpenAI as an optional user-supplied provider. The default OpenAI model is `gpt-5.6-luna`; you can change it with `OPENAI_MODEL`.
+
+### 2. Groq
 Create a Groq API key here:
 
 https://console.groq.com/keys
 
-### 2. Mistral
+### 3. Mistral
 Create a Mistral API key here:
 
 https://console.mistral.ai/api-keys
 
 Mistral's current documentation says the full key is shown only once, so store it securely and do not commit it to Git. See: https://docs.mistral.ai/admin/identity-access/api-keys
 
-### 3. Unlimitless
+### 4. Unlimitless
 Open the Unlimitless portal here:
 
 https://unlimitless.ai/portal
@@ -105,11 +112,12 @@ The application keeps MUN workspace data in browser localStorage. Do not clear t
 
 ## AI provider architecture
 
-Ordinary text generation uses:
+Ordinary text generation can use:
 
-1. Groq — primary.
-2. Mistral — second fallback.
-3. Vireonix — final keyless fallback.
+1. OpenAI — optional user-supplied provider; when configured in the local provider layer it is tried first.
+2. Groq — primary existing provider.
+3. Mistral — second fallback.
+4. Vireonix — final keyless fallback.
 
 Unlimitless is **not** used as a fake drop-in chat model. Its current API is a reasoning/context service over settled user-authored decisions. MUN AI uses it for Niv AI and Brainstorm context.
 
@@ -122,7 +130,7 @@ This repository is prepared to be public:
 - No `.env.local` is committed.
 - `.env.example` contains blank placeholders only.
 - Local credentials are ignored by Git.
-- Users create and enter their own three API keys during setup.
+- Users create and enter their own API keys during setup.
 
 ## Windows launcher
 
