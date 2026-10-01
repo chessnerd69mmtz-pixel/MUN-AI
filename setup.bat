@@ -14,7 +14,8 @@ echo.
 echo Get your keys here:
 echo   Groq:        https://console.groq.com/keys
 echo   Mistral:     https://console.mistral.ai/api-keys
-echo   Unlimitless: https://unlimitless.ai/portal
+echo   OpenAI:      https://platform.openai.com/api-keys
+  Unlimitless: https://unlimitless.ai/portal
 echo.
 
 where node >nul 2>nul
@@ -31,6 +32,8 @@ echo Node.js detected: !NODE_VERSION!
 echo.
 
 if not exist ".env.local" (
+  set /p "OPENAI_KEY=Enter your OpenAI API key (optional): "
+  echo.
   set /p "GROQ_KEY=Enter your Groq API key: "
   if "!GROQ_KEY!"=="" (
     echo ERROR: Groq API key cannot be blank.
@@ -53,7 +56,9 @@ if not exist ".env.local" (
     exit /b 1
   )
 
-  >.env.local echo GROQ_API_KEY=!GROQ_KEY!
+  >.env.local echo OPENAI_API_KEY=!OPENAI_KEY!
+  >>.env.local echo OPENAI_MODEL=gpt-5.6-luna
+  >>.env.local echo GROQ_API_KEY=!GROQ_KEY!
   >>.env.local echo GROQ_MODEL=groq/compound
   >>.env.local echo GROQ_WRITING_MODEL=openai/gpt-oss-120b
   >>.env.local echo MISTRAL_API_KEY=!MISTRAL_KEY!
@@ -93,7 +98,8 @@ echo.
 echo ==========================================
 echo Setup complete!
 echo ==========================================
-echo Groq: configured as primary provider
+echo OpenAI: configured when a key was supplied
+ echo Groq: configured as primary provider
 echo Mistral: configured as second fallback
 echo Unlimitless: configured for Niv AI / Brainstorm reasoning context
 echo Vireonix: keyless final text-generation fallback
