@@ -15,7 +15,7 @@ echo Get your keys here:
 echo   Groq:        https://console.groq.com/keys
 echo   Mistral:     https://console.mistral.ai/api-keys
 echo   OpenAI:      https://platform.openai.com/api-keys
-  Unlimitless: https://unlimitless.ai/portal
+ echo   Unlimitless: https://unlimitless.ai/portal
 echo.
 
 where node >nul 2>nul
