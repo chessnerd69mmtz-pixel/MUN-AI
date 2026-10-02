@@ -102,8 +102,12 @@ echo Setup complete - LOCAL OLLAMA MODE
 echo ==========================================
 echo Model: llama3.2
 echo Endpoint: http://127.0.0.1:11434
+echo Local browser bridge: http://127.0.0.1:11435
 echo Cloud API fallback: DISABLED
 echo.
+echo Starting the Ollama browser bridge...
+start "MUN AI Ollama Bridge" "%ComSpec%" /k "cd /d ""%~dp0"" && node ollama-bridge.js"
+timeout /t 2 /nobreak >nul
 echo Starting MUN AI at http://localhost:3000
 echo ==========================================
 echo.
