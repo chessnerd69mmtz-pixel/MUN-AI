@@ -5,17 +5,12 @@ title MUN AI Setup
 
 echo.
 echo ==========================================
-echo              MUN AI - SETUP
+echo              MUN AI - LOCAL SETUP
 echo ==========================================
 echo.
-echo Every user must enter their own API keys.
-echo This repository does not contain developer credentials.
-echo.
-echo Get your keys here:
-echo   Groq:        https://console.groq.com/keys
-echo   Mistral:     https://console.mistral.ai/api-keys
-echo   OpenAI:      https://platform.openai.com/api-keys
-echo   Unlimitless: https://unlimitless.ai/portal
+echo MUN AI now defaults to local Ollama.
+echo No OpenAI, Groq, Mistral or Unlimitless API key is required
+echo for the normal local AI experience.
 echo.
 
 where node >nul 2>nul
@@ -27,33 +22,57 @@ if errorlevel 1 (
   exit /b 1
 )
 
-for /f "tokens=*" %%v in ('node -v') do set "NODE_VERSION=%%v"
+where ollama >nul 2>nul
+if errorlevel 1 (
+  echo ERROR: Ollama was not found on PATH.
+  echo Install/start Ollama, then run this file again.
+  echo.
+  pause
+  exit /b 1
+)
+
+for /f "tokens=* " %%v in ('node -v') do set "NODE_VERSION=%%v"
 echo Node.js detected: !NODE_VERSION!
 echo.
 
-if not exist ".env.local" (
-  set /p "OPENAI_KEY=Enter your OpenAI API key (optional): "
+echo Checking Ollama...
+ollama list >nul 2>nul
+if errorlevel 1 (
+  echo ERROR: Ollama is not responding.
+  echo Start the Ollama application and run setup again.
   echo.
-  set /p "GROQ_KEY=Enter your Groq API key (optional): "
-  echo.
-  set /p "MISTRAL_KEY=Enter your Mistral API key (optional): "
-  echo.
-  echo Unlimitless is used by Niv AI and Brainstorm for settled reasoning context.
-  set /p "UNLIMITLESS_KEY=Enter your Unlimitless API key (optional): "
-
-  >.env.local echo OPENAI_API_KEY=!OPENAI_KEY!
-  >>.env.local echo OPENAI_MODEL=gpt-5.6-luna
-  >>.env.local echo GROQ_API_KEY=!GROQ_KEY!
-  >>.env.local echo GROQ_MODEL=groq/compound
-  >>.env.local echo GROQ_WRITING_MODEL=openai/gpt-oss-120b
-  >>.env.local echo MISTRAL_API_KEY=!MISTRAL_KEY!
-  >>.env.local echo MISTRAL_MODEL=mistral-small-latest
-  >>.env.local echo UNLIMITLESS_API_KEY=!UNLIMITLESS_KEY!
-  >>.env.local echo VIREONIX_MODEL=auto
-) else (
-  echo .env.local already exists. Keeping the existing user-entered keys.
-  echo To change keys, edit .env.local and rerun this setup.
+  pause
+  exit /b 1
 )
+
+ollama list | findstr /i /b /c:"llama3.2" >nul 2>nul
+if errorlevel 1 (
+  echo llama3.2 is not installed. Downloading it through Ollama...
+  echo This may take a while.
+  ollama pull llama3.2
+  if errorlevel 1 (
+    echo.
+    echo ERROR: Could not install llama3.2.
+    echo.
+    pause
+    exit /b 1
+  )
+)
+
+> .env.local echo AI_PROVIDER=ollama
+>> .env.local echo OLLAMA_BASE_URL=http://127.0.0.1:11434/v1
+>> .env.local echo OLLAMA_MODEL=llama3.2
+>> .env.local echo.
+>> .env.local echo # Cloud providers are intentionally disabled unless AI_PROVIDER is changed manually.
+>> .env.local echo OPENAI_API_KEY=
+>> .env.local echo OPENAI_MODEL=gpt-5.6-luna
+>> .env.local echo GROQ_API_KEY=
+>> .env.local echo GROQ_MODEL=groq/compound
+>> .env.local echo GROQ_WRITING_MODEL=openai/gpt-oss-120b
+>> .env.local echo MISTRAL_API_KEY=
+>> .env.local echo MISTRAL_MODEL=mistral-small-latest
+>> .env.local echo UNLIMITLESS_API_KEY=
+>> .env.local echo VIREONIX_MODEL=auto
 
 echo.
 echo Installing dependencies...
@@ -81,13 +100,11 @@ if errorlevel 1 (
 
 echo.
 echo ==========================================
-echo Setup complete!
+echo Setup complete - LOCAL OLLAMA MODE
 echo ==========================================
-echo OpenAI: configured when a key was supplied
-echo Groq: configured as fallback provider
-echo Mistral: configured as second fallback
-echo Unlimitless: configured for Niv AI / Brainstorm reasoning context
-echo Vireonix: keyless final text-generation fallback
+echo Model: llama3.2
+echo Endpoint: http://127.0.0.1:11434
+echo Cloud API fallback: DISABLED
 echo.
 echo Starting MUN AI at http://localhost:3000
 echo ==========================================
