@@ -164,7 +164,7 @@ if(provider==="ollama"&&mode!=="niv"&&window.buildMUNUNContext){
 user+="\n\nLOCAL RESEARCH GROUNDING — USE THIS MATERIAL:\n"+window.buildMUNUNContext(system+"\n"+user);
 }
 try{
-var endpoint=provider==="ollama"?"http://localhost:11434/v1/chat/completions":provider==="groq"?"https://api.groq.com/openai/v1/chat/completions":"https://api.mistral.ai/v1/chat/completions";
+var endpoint=provider==="ollama"?"http://127.0.0.1:11435/v1/chat/completions":provider==="groq"?"https://api.groq.com/openai/v1/chat/completions":"https://api.mistral.ai/v1/chat/completions";
 var model=provider==="ollama"?"llama3.2":provider==="groq"?"openai/gpt-oss-120b":"mistral-small-latest";
 var requestHeaders={"Content-Type":"application/json"};
 if(provider!=="ollama"&&key)requestHeaders.Authorization="Bearer "+key;
@@ -191,8 +191,8 @@ save();
 out.innerHTML=formatResponse(state[mode],title(),state.provider);
 }catch(e){
 var msg=e&&e.message?e.message:"AI request failed.";
-if(provider==="ollama"&&/Failed to fetch|NetworkError|Load failed/i.test(msg)){
-msg="The browser could not reach local Ollama. Make sure Ollama is running and the llama3.2 model is installed. If Chrome asks for Local Network Access, allow it. For GitHub Pages, Ollama may also need OLLAMA_ORIGINS=https://chessnerd69mmtz-pixel.github.io and a restart. No cloud API key or cloud fallback is used.";
+if(provider==="ollama"&&/Failed to fetch|NetworkError|Load failed|ERR_CONNECTION_REFUSED/i.test(msg)){
+msg="Niv AI could not reach the local Ollama bridge. For GitHub Pages, run START-MUN-AI.bat from the MUN-AI repo so it starts the bridge automatically. If Chrome asks for Local Network Access, allow it for this site. The bridge forwards only to your own Ollama at 127.0.0.1:11434; no API key and no cloud fallback are used.";
 }
 out.innerHTML="<div class='error-box'><b>Response failed.</b><br>"+esc(msg)+"</div>";
 }
