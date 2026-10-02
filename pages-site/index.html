@@ -158,8 +158,8 @@ var system="You are MUN AI, a careful Model United Nations preparation assistant
 var niv=window.buildNivPrompt?window.buildNivPrompt(prompt,delegateContext,window.buildMUNUNContext?window.buildMUNUNContext(system+"\n"+baseUser):"",history):null;
 if(mode==="niv"&&niv)system=niv.system;
 var user=baseUser+"\n\nProduce a polished MUN-ready response with Markdown headings and bullet points. Never put multiple headings or bullets on the same line.";
-if(provider==="ollama"&&window.buildMUNUNContext){
-user+="\n\nLOCAL RESEARCH GROUNDING — USE THIS MATERIAL:\n"+window.buildMUNUNContext((niv?niv.task+" ":"")+system+"\n"+user);
+if(provider==="ollama"&&mode!=="niv"&&window.buildMUNUNContext){
+user+="\n\nLOCAL RESEARCH GROUNDING — USE THIS MATERIAL:\n"+window.buildMUNUNContext(system+"\n"+user);
 }
 try{
 var endpoint=provider==="ollama"?"http://localhost:11434/v1/chat/completions":provider==="groq"?"https://api.groq.com/openai/v1/chat/completions":"https://api.mistral.ai/v1/chat/completions";
