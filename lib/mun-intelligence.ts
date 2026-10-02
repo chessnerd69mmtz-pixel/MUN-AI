@@ -15529,6 +15529,19 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   }
 ] as const
+export const CURRENT_2026_UN_BODY_MEMBERS = {
+  securityCouncil: ["China","France","Russian Federation","United Kingdom of Great Britain and Northern Ireland","United States of America","Bahrain","Colombia","Democratic Republic of the Congo","Denmark","Greece","Latvia","Liberia","Pakistan","Panama","Somalia"],
+  humanRightsCouncil: ["Angola","Benin","Burundi","Côte d'Ivoire","Democratic Republic of the Congo","Egypt","Ethiopia","Gambia","Ghana","Kenya","Malawi","Mauritius","South Africa","China","Cyprus","India","Indonesia","Iraq","Japan","Kuwait","Marshall Islands","Pakistan","Qatar","Republic of Korea","Thailand","Viet Nam","Albania","Bulgaria","Czechia","Estonia","North Macedonia","Bolivia (Plurinational State of)","Brazil","Chile","Colombia","Cuba","Dominican Republic","Ecuador","Mexico","France","Iceland","Italy","Netherlands (Kingdom of the)","Spain","Switzerland","United Kingdom of Great Britain and Northern Ireland"],
+  generalAssemblyMainCommitteeChairs: {
+    first: "Nepal",
+    second: "Albania",
+    third: "Australia",
+    fourth: "Senegal",
+    fifth: "Nigeria",
+    sixth: "Guyana"
+  }
+} as const
+
 const normalize=(value:string)=>value.toLowerCase().replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim()
 const COMMITTEE_ALIASES={"disec":"First Committee (DISEC)","first":"First Committee (DISEC)","first committee":"First Committee (DISEC)","ecofin":"Second Committee (ECOFIN)","second":"Second Committee (ECOFIN)","second committee":"Second Committee (ECOFIN)","sochum":"Third Committee (SOCHUM)","third":"Third Committee (SOCHUM)","third committee":"Third Committee (SOCHUM)","specpol":"Fourth Committee (SPECPOL)","fourth":"Fourth Committee (SPECPOL)","fourth committee":"Fourth Committee (SPECPOL)","fifth committee":"Fifth Committee","sixth committee":"Sixth Committee","legal committee":"Sixth Committee","unsc":"Security Council","security council":"Security Council","sc":"Security Council","hrc":"Human Rights Council","human rights council":"Human Rights Council","un women":"UN Women","unep":"UNEP","who":"WHO","unhcr":"UNHCR","ecosoc":"ECOSOC","icj":"International Court of Justice (ICJ)","icc":"International Criminal Court (ICC)"} as Record<string,string>
 export function findCountryIntelligence(country:string){const n=normalize(country);if(!n)return null;return MUN_COUNTRY_INTELLIGENCE.find(x=>{const k=normalize(x.name);return k===n||k.includes(n)||n.includes(k)})??null}
@@ -15536,7 +15549,7 @@ export function findCommitteeIntelligence(committee:string){const n=normalize(co
 export function buildNivIntelligenceContext(country:string,committee:string){
  const c=findCountryIntelligence(country),k=findCommitteeIntelligence(committee),parts:string[]=[]
  if(c)parts.push(["COUNTRY INTELLIGENCE — STATIC VERIFIED METADATA","Country: "+c.name,"UN admission: "+c.admission,"UN regional group: "+c.regionalGroup,"Official research routes: "+Object.entries(c.officialSources).map(([key,url])=>key+"="+url).join("; "),"COUNTRY DOSSIER — INFORMATION TO RETRIEVE OR VERIFY",JSON.stringify(c.dossier,null,2)].join("\n"))
- if(k)parts.push(["COMMITTEE INTELLIGENCE — MANDATE, AUTHORITY AND ROOM PLAYBOOK",JSON.stringify(k,null,2)].join("\n"))
+ if(k){\n  const currentBodies=Object.entries(CURRENT_2026_UN_BODY_MEMBERS).filter(([key,value])=>Array.isArray(value)&&value.includes(country)||key==="generalAssemblyMainCommitteeChairs").map(([key,value])=>key+": "+JSON.stringify(value)).join("\n")\n  parts.push(["COMMITTEE INTELLIGENCE — MANDATE, AUTHORITY AND ROOM PLAYBOOK",JSON.stringify(k,null,2),currentBodies].join("\n"))\n}
  parts.push("SOURCE DISCIPLINE: Static country metadata is factual. Country policy, current votes, current officeholders, treaty status, sanctions and current events are changeable. Verify them from primary sources before presenting them as current. Never convert a research dimension into an invented fact.")
  return parts.join("\n\n")
 }
