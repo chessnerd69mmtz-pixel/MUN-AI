@@ -2,7 +2,15 @@
 
 A local MUN command center for research, strategy, live committee support, position papers, speeches, resolutions, Niv AI and adversarial brainstorming.
 
-## API keys — every user supplies their own
+## Local Ollama mode — no AI API tokens required
+
+MUN AI now defaults to local Ollama inference. The normal local launcher uses `http://127.0.0.1:11434` with the `llama3.2` model. If Ollama is unavailable or the model is missing, MUN AI shows an error and **does not fall back to OpenAI, Groq, Mistral or Vireonix**. This prevents a local failure from silently consuming cloud API quota.
+
+Run `ollama pull llama3.2` once if the model is not installed, then double-click `START-MUN-AI.bat`.
+
+Cloud providers remain in the code only as explicit opt-in providers; they are not selected by the local launcher.
+
+## API keys — optional cloud mode only
 
 This repository does **not** contain developer API keys. Every user running MUN AI must create and enter their own keys during `setup.bat`.
 
@@ -44,7 +52,7 @@ Vireonix does not require a key and is used only as the final general-generation
 
 1. Install Node.js LTS.
 2. Create your own OpenAI key if you want to use OpenAI, plus the Groq, Mistral and Unlimitless keys you want enabled.
-3. Double-click `setup.bat` and enter the keys locally. OpenAI is optional; Groq, Mistral and Unlimitless remain required by the current local setup flow.
+3. Double-click `setup.bat`. It verifies Ollama, installs `llama3.2` if needed, installs dependencies and builds the app. No cloud API key is requested.
 4. Double-click `START-MUN-AI.bat`.
 5. Open `http://localhost:3000` if the browser does not open automatically.
 
@@ -112,12 +120,13 @@ The application keeps MUN workspace data in browser localStorage. Do not clear t
 
 ## AI provider architecture
 
-Ordinary text generation can use:
+Ordinary text generation defaults to:
 
-1. OpenAI — optional user-supplied provider; when configured in the local provider layer it is tried first.
-2. Groq — primary existing provider.
-3. Mistral — second fallback.
-4. Vireonix — final keyless fallback.
+1. **Ollama — local and default** (`llama3.2` at `127.0.0.1:11434`).
+2. OpenAI — explicit opt-in only with `AI_PROVIDER=openai`.
+3. Groq — explicit opt-in only with `AI_PROVIDER=groq`.
+4. Mistral — explicit opt-in only with `AI_PROVIDER=mistral`.
+5. Vireonix — explicit opt-in only with `AI_PROVIDER=vireonix`.
 
 Unlimitless is **not** used as a fake drop-in chat model. Its current API is a reasoning/context service over settled user-authored decisions. MUN AI uses it for Niv AI and Brainstorm context.
 
