@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { chatWithFallback, type RuntimeApiKeys } from "@/lib/ai"
 import { buildUNContext } from "@/lib/un-knowledge"
 import { buildNivSystemPrompt } from "@/lib/niv-engine"
+import { buildNivIntelligenceContext } from "@/lib/mun-intelligence"
 
 function clean(value: unknown, max = 500) {
   return typeof value === "string" ? value.trim().slice(0, max) : ""
@@ -16,6 +17,7 @@ export async function POST(request: Request) {
       ? body.delegateContext
       : {}
     const country = clean(rawContext.country, 120)
+    const committee = clean(rawContext.committee, 160)
     const rawAgendas = Array.isArray(rawContext.agendas) ? rawContext.agendas : []
     const agendas = rawAgendas.map((agenda: unknown) => clean(agenda, 500)).filter(Boolean).slice(0, 2)
 
@@ -25,6 +27,10 @@ export async function POST(request: Request) {
 
     if (!country) {
       return NextResponse.json({ error: "Set your country/delegation before asking MUN AI." }, { status: 400 })
+    }
+
+    if (!committee) {
+      return NextResponse.json({ error: "Set your committee before asking MUN AI." }, { status: 400 })
     }
 
     if (agendas.length === 0) {
@@ -51,6 +57,7 @@ export async function POST(request: Request) {
     const delegateContext = [
       "DELEGATE CONTEXT — ALWAYS ACTIVE",
       `Country/delegation: ${country}`,
+      `Committee: ${committee}`,
       `Committee agenda 1: ${agendas[0]}`,
       agendas[1] ? `Committee agenda 2: ${agendas[1]}` : "",
       "",
@@ -66,11 +73,12 @@ export async function POST(request: Request) {
 
     const retrievalPrompt = `${delegateContext}\n\nUSER REQUEST:\n${prompt}`
     const unContext = buildUNContext(retrievalPrompt)
+    const intelligenceContext = buildNivIntelligenceContext(country, committee)
 
     const systemPrompt = buildNivSystemPrompt({
       prompt,
       delegateContext,
-      unContext,
+      unContext: unContext + "\n\n" + intelligenceContext,
       conversationContext: conversationHistory.length
         ? conversationHistory.map((item: { role: string; content: string }) => `${item.role.toUpperCase()}: ${item.content}`).join("\n\n")
         : "",
