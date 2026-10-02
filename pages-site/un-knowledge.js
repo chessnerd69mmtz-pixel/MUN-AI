@@ -177,8 +177,8 @@ Before accepting a draft, check authority, funding, clause conflicts, duplicatio
     strategy:[51,65,66,70,78,84],
     negotiation:[51,65,66,78,84],
     resolution:[52,67,68,69,77,79],
-    procedure:[53,79,83],
-    research:[49,60,75,76,80,86],
+    procedure:[53,79,83,88],
+    research:[49,60,75,76,80,86,88],
     country:[58,60,75,76,78,86],
     crisis:[54,82,83,84],
     chair:[53,79,83]
