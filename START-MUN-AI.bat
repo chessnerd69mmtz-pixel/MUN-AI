@@ -7,6 +7,8 @@ rem Force local Ollama mode for this launcher. Cloud providers are never auto-us
 set "AI_PROVIDER=ollama"
 set "OLLAMA_BASE_URL=http://127.0.0.1:11434/v1"
 set "OLLAMA_MODEL=llama3.2"
+rem The local bridge removes browser-to-Ollama CORS issues for the public GitHub Pages UI.
+set "MUN_AI_BRIDGE_PORT=11435"
 
 :START
 cls
@@ -75,6 +77,10 @@ echo.
 echo Starting MUN AI...
 echo.
 echo Browser: http://localhost:3000
+
+echo Starting the Ollama browser bridge on http://127.0.0.1:11435 ...
+start "MUN AI Ollama Bridge" "%ComSpec%" /k "cd /d ""%~dp0"" && node ollama-bridge.js"
+timeout /t 2 /nobreak >nul
 echo Keep this window open while MUN AI is running.
 echo Close it when you want to stop MUN AI.
 echo.
