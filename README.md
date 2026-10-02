@@ -44,10 +44,11 @@ Vireonix does not require a key and is used only as the final general-generation
 ## Setup
 
 1. Install Node.js LTS.
-2. Create your own OpenAI key if you want to use OpenAI, plus the Groq, Mistral and Unlimitless keys you want enabled.
-3. Double-click `setup.bat`. It verifies Ollama, installs `llama3.2` if needed, installs dependencies and builds the app. No cloud API key is requested.
-4. Double-click `START-MUN-AI.bat`.
-5. Open `http://localhost:3000` if the browser does not open automatically.
+2. For local mode, install Ollama and let the launcher install/pull `llama3.2`. No cloud key is required.
+3. If you explicitly choose cloud mode, enter your own Groq, Mistral or Unlimitless key; no OpenAI API key is required or supported.
+4. Double-click `setup.bat`. It verifies Ollama, installs `llama3.2` if needed, installs dependencies and builds the app. No cloud API key is requested.
+5. Double-click `START-MUN-AI.bat`.
+6. Open `http://localhost:3000` if the browser does not open automatically.
 
 The application keeps MUN workspace data in browser localStorage. Do not clear the site's storage if you want to retain local MUN workspaces and saved documents.
 
@@ -70,8 +71,11 @@ The application keeps MUN workspace data in browser localStorage. Do not clear t
 - Conference rules can be stored and used as committee context.
 
 ### Niv AI
-- Practical MUN guidance for chair questions, diplomacy, alliances, speeches, negotiation and room-side decisions.
-- Workspace-local recent memory.
+- Task-aware MUN reasoning for strategy, speeches, POIs, rebuttals, negotiations, resolutions, procedure, research, country-position analysis, crisis and chair simulation.
+- Workspace-local recent memory and conversation continuity.
+- A deterministic Niv task engine selects the relevant reasoning checklist before generation.
+- Retrieved UN/MUN knowledge is task-aware, with dedicated clause, negotiation, POI, speech, procedure and source-discipline sections.
+- Final self-check instructions force the model to verify country, committee, agenda, factual status and actionable next steps before answering.
 - Unlimitless settled-reasoning context when a user key is configured.
 - Multiple perspectives including advisor, chair simulator, neutral delegate, hostile delegate, speech rehearsal and post-committee coaching.
 
