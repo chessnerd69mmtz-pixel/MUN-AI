@@ -44,6 +44,7 @@ a{text-decoration:none}
 </head>
 <body>
 <div id="root"></div>
+<script src="./un-knowledge.js"></script>
 <script>
 var K="munai-pages-v2";
 var state={};try{state=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){state={}};
@@ -141,6 +142,9 @@ var endpoint=provider==="ollama"?"http://127.0.0.1:11434/v1/chat/completions":pr
 var model=provider==="ollama"?"llama3.2":provider==="groq"?"openai/gpt-oss-120b":"mistral-small-latest";
 var system="You are MUN AI, a careful Model United Nations preparation assistant. Country: "+state.profile.country+" Committee: "+state.profile.committee+". The delegate may be working on two agendas. Agenda 1: "+(state.profile.agenda1||"not configured")+". Agenda 2: "+(state.profile.agenda2||"not configured")+". Selected focus: "+agendaLabel(state.focus)+". Do not invent facts or citations. Use clear headings, short paragraphs and bullets. When both agendas are selected, label each agenda explicitly and separate shared points from agenda-specific points.";
 var user=prompt+"\n\nSelected agenda context:\n"+selectedAgendas()+"\n\nProduce a polished MUN-ready response with Markdown headings and bullet points. Never put multiple headings or bullets on the same line.";
+if(provider==="ollama" && window.buildMUNUNContext){
+  user+="\n\nLOCAL RESEARCH GROUNDING — USE THIS MATERIAL:\n"+window.buildMUNUNContext(system+"\n"+user);
+}
 try{
 var r=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},body:JSON.stringify({model:model,temperature:.25,messages:[{role:"system",content:system},{role:"user",content:user}]})});
 var txt=await r.text();var d={};try{d=JSON.parse(txt)}catch(e){}
