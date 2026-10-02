@@ -15915,6 +15915,144 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   }
 ] as const
+export const MUN_COMMITTEE_DEEP_PLAYBOOK: Record<string, {
+  agendaFamilies:string[]
+  evidencePriority:string[]
+  implementationLens:string[]
+  negotiationQuestions:string[]
+  commonFailureModes:string[]
+  usefulOutputs:string[]
+}> = {
+  "General Assembly Plenary": {
+    agendaFamilies:["peace and security","development","human rights","international law","global governance","humanitarian issues"],
+    evidencePriority:["Charter provisions","prior GA resolutions","official voting records","Member State statements","UN reports"],
+    implementationLens:["mandate","responsible UN entity","funding","reporting","voluntary vs binding language"],
+    negotiationQuestions:["Which regional groups can sponsor this?","Which operative verbs are acceptable to the widest coalition?","Which provisions require a budget or another organ?"],
+    commonFailureModes:["treating recommendations as binding","ignoring regional-group dynamics","drafting outside GA competence"],
+    usefulOutputs:["GSL","moderated caucus points","bloc map","draft clauses","vote forecast based only on documented positions"]
+  },
+  "First Committee (DISEC)": {
+    agendaFamilies:["nuclear weapons","conventional weapons","cybersecurity","outer space","terrorism","arms transfers","disarmament architecture"],
+    evidencePriority:["treaty status","UNODA documents","resolution history","official national statements","Secretary-General reports"],
+    implementationLens:["verification","monitoring","export controls","compliance","capacity building","technology safeguards"],
+    negotiationQuestions:["What security concern does the clause solve?","Who verifies compliance?","What happens to states outside the instrument?"],
+    commonFailureModes:["inventing treaty obligations","ignoring verification","proposing technically impossible controls"],
+    usefulOutputs:["POIs","security speeches","operative clauses","verification mechanisms","red-team audits"]
+  },
+  "Second Committee (ECOFIN)": {
+    agendaFamilies:["financing for development","debt","trade","food and energy security","technology transfer","poverty","sustainable development"],
+    evidencePriority:["UN DESA","World Bank/IMF documents when appropriate","SDG indicators","official national statistics","UNCTAD material"],
+    implementationLens:["cost","funding source","eligibility","delivery mechanism","monitoring","debt sustainability"],
+    negotiationQuestions:["Who pays?","Who qualifies?","What is the delivery institution?","How are benefits measured?"],
+    commonFailureModes:["unfunded mandates","invented statistics","ignoring distributional effects"],
+    usefulOutputs:["financing proposals","SDG-linked clauses","funding matrices","coalition compromise language"]
+  },
+  "Third Committee (SOCHUM)": {
+    agendaFamilies:["civil and political rights","economic and social rights","women","children","refugees and migrants","disability","discrimination","humanitarian protection"],
+    evidencePriority:["OHCHR","treaty bodies","UPR","special procedures","UNHCR/UNICEF/UN Women reports","official statements"],
+    implementationLens:["legal safeguards","access to services","monitoring","complaints mechanisms","capacity","non-discrimination"],
+    negotiationQuestions:["What evidence supports the concern?","What implementation body is competent?","How are affected people protected?"],
+    commonFailureModes:["turning allegations into facts","confusing treaties with recommendations","proposing enforcement outside mandate"],
+    usefulOutputs:["rights-based clauses","POIs","country-response analysis","monitoring mechanisms"]
+  },
+  "Fourth Committee (SPECPOL)": {
+    agendaFamilies:["decolonization","peacekeeping political questions","information","special political situations","territorial questions"],
+    evidencePriority:["General Assembly resolutions","Special Committee on Decolonization","peacekeeping mandates","official records","territory-specific UN documents"],
+    implementationLens:["mandate","self-determination","status","political process","reporting","consent"],
+    negotiationQuestions:["What is the exact UN mandate?","Which status question is legally distinct?","Which wording preserves negotiating space?"],
+    commonFailureModes:["conflating sovereignty with self-determination","ignoring historical resolutions","using imprecise territorial terminology"],
+    usefulOutputs:["historical timeline","mandate audit","neutral wording options","POIs"]
+  },
+  "Fifth Committee": {
+    agendaFamilies:["programme budget","peacekeeping financing","human resources","oversight","administration","procurement"],
+    evidencePriority:["approved budgets","ACABQ reports","Fifth Committee documents","Secretary-General budget proposals","audit/oversight reports"],
+    implementationLens:["appropriation","assessment","resource allocation","staffing","audit","value for money"],
+    negotiationQuestions:["What is the cost?","Which appropriation covers it?","What is the reporting and oversight mechanism?"],
+    commonFailureModes:["inventing budget figures","confusing voluntary and assessed funding","ignoring oversight"],
+    usefulOutputs:["costed amendments","budget tables","oversight clauses","funding objections"]
+  },
+  "Sixth Committee": {
+    agendaFamilies:["international law","treaties","state responsibility","jurisdiction","terrorism law","codification"],
+    evidencePriority:["Charter","treaties","ICJ judgments","ILC work","UN legal documents","state submissions"],
+    implementationLens:["jurisdiction","consent","definitions","legal consequences","enforcement","reservations"],
+    negotiationQuestions:["What is the legal basis?","Which states are bound?","What is the remedy?","Is the term legally defined?"],
+    commonFailureModes:["inventing customary law","confusing political resolutions with treaties","ignoring jurisdiction"],
+    usefulOutputs:["legal issue trees","clause legality audits","case-law summaries","POIs"]
+  },
+  "Security Council": {
+    agendaFamilies:["armed conflict","sanctions","peacekeeping","counter-terrorism","protection of civilians","humanitarian access","non-proliferation"],
+    evidencePriority:["Charter","Council resolutions","Secretary-General reports","sanctions committee documents","meeting records","mission reports"],
+    implementationLens:["Chapter VII or other legal basis","mandate","monitoring","sanctions enforcement","reporting","consent"],
+    negotiationQuestions:["Will the P5 accept the text?","What operative authority is actually available?","What is the monitoring and exit mechanism?"],
+    commonFailureModes:["ignoring veto dynamics","using GA-style recommendations as if binding","inventing enforcement powers"],
+    usefulOutputs:["crisis directives","draft resolutions","P5/P10 map","sanctions design","amendment strategy"]
+  },
+  "ECOSOC": {
+    agendaFamilies:["SDGs","development financing","economic policy","social development","UN-system coordination","development cooperation"],
+    evidencePriority:["ECOSOC documents","UN DESA","SDG indicators","functional commission outputs","specialized agency reports"],
+    implementationLens:["coordination","indicators","financing","institutional division of labour","follow-up"],
+    negotiationQuestions:["Which UN entity owns implementation?","Which indicator proves progress?","How does the proposal interact with existing mechanisms?"],
+    commonFailureModes:["duplicating another body's mandate","vague SDG references","ignoring coordination costs"],
+    usefulOutputs:["SDG roadmaps","coordination mechanisms","indicator frameworks","policy recommendations"]
+  },
+  "Human Rights Council": {
+    agendaFamilies:["country situations","thematic rights","UPR","special procedures","accountability","humanitarian rights"],
+    evidencePriority:["OHCHR reports","UPR recommendations","special-procedure communications","treaty bodies","official state replies"],
+    implementationLens:["recommendations","monitoring","technical assistance","reporting","victim protection"],
+    negotiationQuestions:["What finding is documented?","Is this a recommendation or legal obligation?","What monitoring mechanism is proportionate?"],
+    commonFailureModes:["presenting allegations as findings","ignoring state replies","overstating Council enforcement powers"],
+    usefulOutputs:["UPR matrices","evidence tables","country-response briefs","monitoring clauses"]
+  },
+  "WHO": {
+    agendaFamilies:["pandemic preparedness","vaccines","AMR","health systems","universal health coverage","health emergencies"],
+    evidencePriority:["WHO technical guidance","World Health Assembly documents","official health statistics","disease surveillance","national health authorities"],
+    implementationLens:["surveillance","procurement","manufacturing","supply chains","financing","data sharing"],
+    negotiationQuestions:["Who manufactures?","Who pays?","How is data protected?","What happens during a cross-border emergency?"],
+    commonFailureModes:["inventing WHO authority","ignoring national implementation","unfunded health programmes"],
+    usefulOutputs:["health action plans","surveillance frameworks","procurement clauses","emergency protocols"]
+  },
+  "UNEP": {
+    agendaFamilies:["climate","biodiversity","pollution","chemicals","waste","oceans","environmental governance"],
+    evidencePriority:["UNEP assessments","scientific assessments","MEAs","official national environmental data","UNFCCC/IPBES material where relevant"],
+    implementationLens:["targets","finance","technology","measurement","reporting","national plans"],
+    negotiationQuestions:["Which environmental instrument governs?","What is the target year?","How is compliance measured?"],
+    commonFailureModes:["mixing UNEP and UNFCCC mandates","unsupported environmental statistics","targets without measurement"],
+    usefulOutputs:["implementation roadmaps","indicator systems","finance mechanisms","technology-transfer clauses"]
+  },
+  "UN Women": {
+    agendaFamilies:["gender-based violence","political participation","economic empowerment","education","women peace and security","institutional equality"],
+    evidencePriority:["UN Women reports","CEDAW material","SDG indicators","national data","UN Security Council WPS documents"],
+    implementationLens:["survivor protection","services","financing","data","institutional accountability"],
+    negotiationQuestions:["Who implements?","How are survivors protected?","What measurable indicator changes?"],
+    commonFailureModes:["tokenistic language","no implementation mechanism","conflating gender equality with one policy area"],
+    usefulOutputs:["GBV prevention packages","WPS plans","gender-responsive budgeting clauses","data frameworks"]
+  },
+  "UNHCR": {
+    agendaFamilies:["refugee protection","asylum","statelessness","resettlement","host-community support","durable solutions"],
+    evidencePriority:["UNHCR reports","Refugee Convention","national asylum law","protection data","appeals and funding reports"],
+    implementationLens:["registration","legal status","protection","host capacity","resettlement","return conditions"],
+    negotiationQuestions:["Who qualifies for protection?","What is the safe and durable solution?","Who finances host-state support?"],
+    commonFailureModes:["conflating migrants and refugees","assuming return is safe","ignoring host-country capacity"],
+    usefulOutputs:["protection plans","resettlement mechanisms","host-support packages","POIs"]
+  },
+  "International Court of Justice (ICJ)": {
+    agendaFamilies:["jurisdiction","admissibility","treaty interpretation","state responsibility","provisional measures","reparations"],
+    evidencePriority:["ICJ judgments/orders","treaty text","jurisdictional declarations","UN Charter","official pleadings"],
+    implementationLens:["jurisdiction","applicable law","proof","causation","remedy","compliance"],
+    negotiationQuestions:["What creates jurisdiction?","Which legal rule applies?","What remedy is available?"],
+    commonFailureModes:["treating ICJ like ICC","skipping jurisdiction","asserting facts without evidence"],
+    usefulOutputs:["memorial outlines","jurisdiction matrices","issue trees","oral pleadings"]
+  },
+  "International Criminal Court (ICC)": {
+    agendaFamilies:["genocide","crimes against humanity","war crimes","aggression","complementarity","victim participation"],
+    evidencePriority:["Rome Statute","ICC decisions","Prosecutor documents","Elements of Crimes","state cooperation records"],
+    implementationLens:["jurisdiction","admissibility","evidence","cooperation","victim protection"],
+    negotiationQuestions:["Does the Court have jurisdiction?","Is the case admissible?","What evidence supports each element?"],
+    commonFailureModes:["confusing state and individual responsibility","assuming universal jurisdiction","ignoring complementarity"],
+    usefulOutputs:["case theory","jurisdiction analysis","element-by-element evidence tables","oral submissions"]
+  }
+}
+
 export const CURRENT_2026_UN_BODY_MEMBERS = {
   securityCouncil: ["China","France","Russian Federation","United Kingdom of Great Britain and Northern Ireland","United States of America","Bahrain","Colombia","Democratic Republic of the Congo","Denmark","Greece","Latvia","Liberia","Pakistan","Panama","Somalia"],
   humanRightsCouncil: ["Angola","Benin","Burundi","Côte d'Ivoire","Democratic Republic of the Congo","Egypt","Ethiopia","Gambia","Ghana","Kenya","Malawi","Mauritius","South Africa","China","Cyprus","India","Indonesia","Iraq","Japan","Kuwait","Marshall Islands","Pakistan","Qatar","Republic of Korea","Thailand","Viet Nam","Albania","Bulgaria","Czechia","Estonia","North Macedonia","Slovenia","Bolivia (Plurinational State of)","Brazil","Chile","Colombia","Cuba","Dominican Republic","Ecuador","Mexico","France","Iceland","Italy","Netherlands (Kingdom of the)","Spain","Switzerland","United Kingdom of Great Britain and Northern Ireland"],
@@ -15935,7 +16073,7 @@ export function findCommitteeIntelligence(committee:string){const n=normalize(co
 export function buildNivIntelligenceContext(country:string,committee:string){
  const c=findCountryIntelligence(country),k=findCommitteeIntelligence(committee),parts:string[]=[]
  if(c)parts.push(["COUNTRY INTELLIGENCE — STATIC VERIFIED METADATA","Country: "+c.name,"UN admission: "+c.admission,"UN regional group: "+c.regionalGroup,"Official research routes: "+Object.entries(c.officialSources).map(([key,url])=>key+"="+url).join("; "),"COUNTRY DOSSIER — INFORMATION TO RETRIEVE OR VERIFY",JSON.stringify(c.dossier,null,2)].join("\n"))
- if(k){\n  const currentBodies=Object.entries(CURRENT_2026_UN_BODY_MEMBERS).filter(([key,value])=>Array.isArray(value)&&value.includes(country)||key==="generalAssemblyMainCommitteeChairs").map(([key,value])=>key+": "+JSON.stringify(value)).join("\n")\n  parts.push(["COMMITTEE INTELLIGENCE — MANDATE, AUTHORITY AND ROOM PLAYBOOK",JSON.stringify(k,null,2),currentBodies].join("\n"))\n}
+ if(k){\n  const currentBodies=Object.entries(CURRENT_2026_UN_BODY_MEMBERS).filter(([key,value])=>Array.isArray(value)&&value.includes(country)||key==="generalAssemblyMainCommitteeChairs").map(([key,value])=>key+": "+JSON.stringify(value)).join("\n")\n  parts.push(["COMMITTEE INTELLIGENCE — MANDATE, AUTHORITY AND ROOM PLAYBOOK",JSON.stringify(k,null,2),JSON.stringify(MUN_COMMITTEE_DEEP_PLAYBOOK[Object.keys(MUN_COMMITTEE_INTELLIGENCE).find(key=>MUN_COMMITTEE_INTELLIGENCE[key]===k)||committee]||{}),currentBodies].join("\n"))\n}
  parts.push("SOURCE DISCIPLINE: Static country metadata is factual. Country policy, current votes, current officeholders, treaty status, sanctions and current events are changeable. Verify them from primary sources before presenting them as current. Never convert a research dimension into an invented fact.")
  return parts.join("\n\n")
 }
