@@ -15531,7 +15531,7 @@ export const MUN_COUNTRY_INTELLIGENCE=[
 ] as const
 export const CURRENT_2026_UN_BODY_MEMBERS = {
   securityCouncil: ["China","France","Russian Federation","United Kingdom of Great Britain and Northern Ireland","United States of America","Bahrain","Colombia","Democratic Republic of the Congo","Denmark","Greece","Latvia","Liberia","Pakistan","Panama","Somalia"],
-  humanRightsCouncil: ["Angola","Benin","Burundi","Côte d'Ivoire","Democratic Republic of the Congo","Egypt","Ethiopia","Gambia","Ghana","Kenya","Malawi","Mauritius","South Africa","China","Cyprus","India","Indonesia","Iraq","Japan","Kuwait","Marshall Islands","Pakistan","Qatar","Republic of Korea","Thailand","Viet Nam","Albania","Bulgaria","Czechia","Estonia","North Macedonia","Bolivia (Plurinational State of)","Brazil","Chile","Colombia","Cuba","Dominican Republic","Ecuador","Mexico","France","Iceland","Italy","Netherlands (Kingdom of the)","Spain","Switzerland","United Kingdom of Great Britain and Northern Ireland"],
+  humanRightsCouncil: ["Angola","Benin","Burundi","Côte d'Ivoire","Democratic Republic of the Congo","Egypt","Ethiopia","Gambia","Ghana","Kenya","Malawi","Mauritius","South Africa","China","Cyprus","India","Indonesia","Iraq","Japan","Kuwait","Marshall Islands","Pakistan","Qatar","Republic of Korea","Thailand","Viet Nam","Albania","Bulgaria","Czechia","Estonia","North Macedonia","Slovenia","Bolivia (Plurinational State of)","Brazil","Chile","Colombia","Cuba","Dominican Republic","Ecuador","Mexico","France","Iceland","Italy","Netherlands (Kingdom of the)","Spain","Switzerland","United Kingdom of Great Britain and Northern Ireland"],
   generalAssemblyMainCommitteeChairs: {
     first: "Nepal",
     second: "Albania",
