@@ -16073,7 +16073,12 @@ export function findCommitteeIntelligence(committee:string){const n=normalize(co
 export function buildNivIntelligenceContext(country:string,committee:string){
  const c=findCountryIntelligence(country),k=findCommitteeIntelligence(committee),parts:string[]=[]
  if(c)parts.push(["COUNTRY INTELLIGENCE — STATIC VERIFIED METADATA","Country: "+c.name,"UN admission: "+c.admission,"UN regional group: "+c.regionalGroup,"Official research routes: "+Object.entries(c.officialSources).map(([key,url])=>key+"="+url).join("; "),"COUNTRY DOSSIER — INFORMATION TO RETRIEVE OR VERIFY",JSON.stringify(c.dossier,null,2)].join("\n"))
- if(k){\n  const currentBodies=Object.entries(CURRENT_2026_UN_BODY_MEMBERS).filter(([key,value])=>Array.isArray(value)&&value.includes(country)||key==="generalAssemblyMainCommitteeChairs").map(([key,value])=>key+": "+JSON.stringify(value)).join("\n")\n  parts.push(["COMMITTEE INTELLIGENCE — MANDATE, AUTHORITY AND ROOM PLAYBOOK",JSON.stringify(k,null,2),JSON.stringify(MUN_COMMITTEE_DEEP_PLAYBOOK[Object.keys(MUN_COMMITTEE_INTELLIGENCE).find(key=>MUN_COMMITTEE_INTELLIGENCE[key]===k)||committee]||{}),currentBodies].join("\n"))\n}
+ if(k){
+  const currentBodies=Object.entries(CURRENT_2026_UN_BODY_MEMBERS)
+    .filter(([key,value])=>(Array.isArray(value)&&value.includes(country))||key==="generalAssemblyMainCommitteeChairs")
+    .map(([key,value])=>key+": "+JSON.stringify(value)).join("\n")
+  parts.push(["COMMITTEE INTELLIGENCE — MANDATE, AUTHORITY AND ROOM PLAYBOOK",JSON.stringify(k,null,2),JSON.stringify(MUN_COMMITTEE_DEEP_PLAYBOOK[Object.keys(MUN_COMMITTEE_INTELLIGENCE).find(key=>MUN_COMMITTEE_INTELLIGENCE[key]===k)||committee]||{}),currentBodies].join("\n"))
+ }
  parts.push("SOURCE DISCIPLINE: Static country metadata is factual. Country policy, current votes, current officeholders, treaty status, sanctions and current events are changeable. Verify them from primary sources before presenting them as current. Never convert a research dimension into an invented fact.")
  return parts.join("\n\n")
 }
