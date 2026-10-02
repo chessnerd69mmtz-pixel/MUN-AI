@@ -739,16 +739,37 @@ const TOPIC_ALIASES: Record<string, string[]> = {
 }
 
 function splitKnowledgeSections() {
-  return UN_KNOWLEDGE_BASE.split(/\n(?=\d+\. )/).map(section => {
-    const match = section.match(/^(\d+)\. ([^\n]+)/)
-    return {
-      number: match ? Number(match[1]) : 0,
-      title: match ? match[2] : "Core reference",
-      text: section.trim(),
-    }
-  }).filter(section => section.text.length > 0)
-}
+  const lines = UN_KNOWLEDGE_BASE.split("\n")
+  const sections: { number: number; title: string; text: string }[] = []
+  let current: string[] = []
 
+  for (const line of lines) {
+    const heading = line.match(/^(\d+)\. ([A-Z][A-Z0-9 —’'()&/.-]*)$/)
+    if (heading && current.length > 0) {
+      const text = current.join("\n").trim()
+      const first = text.match(/^(\d+)\. ([^\n]+)/)
+      sections.push({
+        number: first ? Number(first[1]) : 0,
+        title: first ? first[2] : "Core reference",
+        text,
+      })
+      current = [line]
+    } else {
+      current.push(line)
+    }
+  }
+
+  const text = current.join("\n").trim()
+  const first = text.match(/^(\d+)\. ([^\n]+)/)
+  if (text) {
+    sections.push({
+      number: first ? Number(first[1]) : 0,
+      title: first ? first[2] : "Core reference",
+      text,
+    })
+  }
+  return sections
+}
 const KNOWLEDGE_SECTIONS = splitKnowledgeSections()
 
 const TASK_SECTION_HINTS: Record<string, number[]> = {
