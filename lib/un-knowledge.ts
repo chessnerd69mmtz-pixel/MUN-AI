@@ -570,11 +570,97 @@ This keeps institutional facts separate from strategy.
 13. Verify every number, quote, treaty and resolution reference before committee.
 `.trim()
 
+const CORE_SECTIONS = new Set([1, 2, 3, 4, 6, 8, 9, 16, 18, 60])
+
+const TOPIC_ALIASES: Record<string, string[]> = {
+  security: ["security", "peace", "conflict", "war", "armed", "sanction", "peacekeeping", "disarmament", "nuclear", "military", "terror"],
+  ga: ["general assembly", "ga", "plenary", "first committee", "second committee", "third committee", "fourth committee", "fifth committee", "sixth committee", "disec", "ecofin", "sochum", "specpol", "legal committee"],
+  law: ["law", "legal", "treaty", "charter", "article", "jurisdiction", "court", "icj", "sovereignty", "self-determination"],
+  humanrights: ["human rights", "rights", "udhr", "discrimination", "gender", "women", "children", "refugee", "migration", "trafficking"],
+  climate: ["climate", "environment", "emission", "adaptation", "mitigation", "loss and damage", "sustainability", "sdg", "pollution", "ecosystem"],
+  health: ["health", "who", "pandemic", "disease", "vaccine", "medicine", "hospital", "public health", "nutrition"],
+  economy: ["economy", "economic", "finance", "budget", "trade", "development", "debt", "poverty", "food security", "infrastructure"],
+  cyber: ["cyber", "cybersecurity", "digital", "internet", "ai", "artificial intelligence", "technology", "data"],
+  procedure: ["procedure", "motion", "moderated caucus", "unmoderated caucus", "point of order", "poi", "poo", "roll call", "speaker", "voting", "amendment", "quorum"],
+  resolution: ["resolution", "operative", "preambulatory", "clause", "draft", "working paper", "amendment", "sponsor", "signatory"],
+  diplomacy: ["diplomacy", "delegate", "bloc", "coalition", "ally", "negotiation", "rebuttal", "speech", "position", "national interest"],
+  research: ["current", "latest", "today", "recent", "source", "citation", "vote", "voting record", "country position", "official statement"],
+}
+
+function splitKnowledgeSections() {
+  return UN_KNOWLEDGE_BASE.split(/\n(?=\d+\. )/).map(section => {
+    const match = section.match(/^(\d+)\. ([^\n]+)/)
+    return {
+      number: match ? Number(match[1]) : 0,
+      title: match ? match[2] : "Core reference",
+      text: section.trim(),
+    }
+  }).filter(section => section.text.length > 0)
+}
+
+const KNOWLEDGE_SECTIONS = splitKnowledgeSections()
+
+function tokenize(value: string) {
+  return new Set(
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, " ")
+      .split(/\s+/)
+      .filter(word => word.length >= 3)
+  )
+}
+
+function relevanceScore(section: { number: number; title: string; text: string }, prompt: string) {
+  const promptTokens = tokenize(prompt)
+  const haystack = section.text.toLowerCase()
+  let score = CORE_SECTIONS.has(section.number) ? 1.5 : 0
+
+  for (const token of promptTokens) {
+    if (section.title.toLowerCase().includes(token)) score += 5
+    if (haystack.includes(token)) score += 0.35
+  }
+
+  for (const aliases of Object.values(TOPIC_ALIASES)) {
+    const matched = aliases.filter(alias => haystack.includes(alias) && prompt.toLowerCase().includes(alias))
+    score += matched.length * 2
+  }
+
+  return score
+}
+
 export function buildUNContext(userPrompt: string) {
+  const prompt = userPrompt.trim()
+  const ranked = KNOWLEDGE_SECTIONS
+    .map(section => ({ section, score: relevanceScore(section, prompt) }))
+    .sort((a, b) => b.score - a.score)
+
+  // Always retain the institutional/accuracy core, then retrieve the most
+  // relevant sections. This keeps local context useful without sending ~47K
+  // characters on every request.
+  const selectedNumbers = new Set<number>(CORE_SECTIONS)
+  for (const item of ranked) {
+    if (selectedNumbers.size >= 18) break
+    if (item.score >= 1.75) selectedNumbers.add(item.section.number)
+  }
+
+  // If a very short/ambiguous prompt produces few matches, add the strongest
+  // sections so Ollama still receives useful domain grounding.
+  if (selectedNumbers.size < 10) {
+    for (const item of ranked) {
+      selectedNumbers.add(item.section.number)
+      if (selectedNumbers.size >= 10) break
+    }
+  }
+
+  const selected = KNOWLEDGE_SECTIONS
+    .filter(section => selectedNumbers.has(section.number))
+    .sort((a, b) => a.number - b.number)
+
   return [
-    "Use the following local UN/MUN reference knowledge to ground your answer.",
-    "It is a static reference layer: current events, current country positions, exact recent voting records and live statistics still require research.",
+    "Use the following locally stored UN/MUN reference knowledge to ground your answer.",
+    "Only the most relevant sections are retrieved for this prompt; the full reference library is stored locally in the application.",
+    "This is a static reference layer: current events, current country positions, exact recent voting records and live statistics still require current research.",
     "",
-    UN_KNOWLEDGE_BASE,
-  ].join("\n")
+    ...selected.map(section => section.text),
+  ].join("\n\n")
 }
