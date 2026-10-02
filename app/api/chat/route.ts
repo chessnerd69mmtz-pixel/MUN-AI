@@ -77,6 +77,9 @@ export async function POST(request: Request) {
     })
 
     const { completion, provider } = await chatWithFallback({
+      temperature: 0.2,
+      top_p: 0.9,
+      max_tokens: 1800,
       messages: [
         { role: "system", content: systemPrompt },
         ...conversationHistory,
