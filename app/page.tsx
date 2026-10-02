@@ -14,6 +14,7 @@ export default function Home() {
   const [mode, setMode] = useState<Mode>("ollama")
   const [prompt, setPrompt] = useState("Help me prepare a strong MUN strategy for my agenda.")
   const [country, setCountry] = useState(DEFAULT_CONTEXT.country)
+  const [committee, setCommittee] = useState("")
   const [agenda1, setAgenda1] = useState(DEFAULT_CONTEXT.agenda1)
   const [agenda2, setAgenda2] = useState(DEFAULT_CONTEXT.agenda2)
   const [answer, setAnswer] = useState("")
@@ -62,7 +63,7 @@ export default function Home() {
         body: JSON.stringify({
           prompt,
           mode,
-          delegateContext: { country, agendas: [agenda1, agenda2].filter(Boolean) },
+          delegateContext: { country, committee, agendas: [agenda1, agenda2].filter(Boolean) },
           conversationHistory: mode === "ollama" ? nivHistory.slice(-8) : undefined,
           apiKeys: mode === "api" ? keys : undefined,
         })
@@ -91,6 +92,13 @@ export default function Home() {
         onChange={e => setCountry(e.target.value)}
         placeholder="e.g. India"
         autoComplete="country-name"
+      />
+
+      <label>Committee</label>
+      <input
+        value={committee}
+        onChange={e => setCommittee(e.target.value)}
+        placeholder="e.g. DISEC / Security Council / SOCHUM"
       />
 
       <label>Agenda 1</label>
