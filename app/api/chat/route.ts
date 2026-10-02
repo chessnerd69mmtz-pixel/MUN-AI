@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { chatWithFallback, type RuntimeApiKeys } from "@/lib/ai"
+import { buildUNContext } from "@/lib/un-knowledge"
 
 export async function POST(request: Request) {
   try {
@@ -23,7 +24,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "system",
-          content: "You are MUN AI, a careful Model United Nations preparation assistant. Do not invent facts or citations. Give practical, structured MUN guidance.",
+          content: `You are MUN AI, a careful Model United Nations preparation assistant. Do not invent facts or citations. Give practical, structured MUN guidance.\n\n${buildUNContext(prompt)}`,
         },
         { role: "user", content: prompt },
       ],
