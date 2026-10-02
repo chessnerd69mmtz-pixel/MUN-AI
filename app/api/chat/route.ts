@@ -2,14 +2,32 @@ import { NextResponse } from "next/server"
 import { chatWithFallback, type RuntimeApiKeys } from "@/lib/ai"
 import { buildUNContext } from "@/lib/un-knowledge"
 
+function clean(value: unknown, max = 500) {
+  return typeof value === "string" ? value.trim().slice(0, max) : ""
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const prompt = typeof body?.prompt === "string" ? body.prompt.trim() : ""
+    const prompt = clean(body?.prompt, 8000)
     const mode = body?.mode === "api" ? "api" : "ollama"
+    const rawContext = body?.delegateContext && typeof body.delegateContext === "object"
+      ? body.delegateContext
+      : {}
+    const country = clean(rawContext.country, 120)
+    const rawAgendas = Array.isArray(rawContext.agendas) ? rawContext.agendas : []
+    const agendas = rawAgendas.map((agenda: unknown) => clean(agenda, 500)).filter(Boolean).slice(0, 2)
 
     if (!prompt) {
       return NextResponse.json({ error: "Prompt is required." }, { status: 400 })
+    }
+
+    if (!country) {
+      return NextResponse.json({ error: "Set your country/delegation before asking MUN AI." }, { status: 400 })
+    }
+
+    if (agendas.length === 0) {
+      return NextResponse.json({ error: "Set at least one committee agenda before asking MUN AI." }, { status: 400 })
     }
 
     const rawKeys = body?.apiKeys && typeof body.apiKeys === "object" ? body.apiKeys : {}
@@ -20,11 +38,38 @@ export async function POST(request: Request) {
       unlimitless: typeof rawKeys.unlimitless === "string" ? rawKeys.unlimitless.trim() : "",
     }
 
+    const delegateContext = [
+      "DELEGATE CONTEXT — ALWAYS ACTIVE",
+      `Country/delegation: ${country}`,
+      `Committee agenda 1: ${agendas[0]}`,
+      agendas[1] ? `Committee agenda 2: ${agendas[1]}` : "",
+      "",
+      "Rules:",
+      "- Treat the stated country/delegation as the user's represented state for MUN purposes.",
+      "- Keep both agendas in mind throughout the conversation/request, even when the user asks a broader question.",
+      "- When the request concerns an agenda, tailor analysis to the country/delegation's interests, stated-policy constraints, likely diplomatic priorities, and plausible MUN negotiating position.",
+      "- Do not invent a country's official position. Distinguish verified country policy from reasonable MUN strategy and say when current country-specific research is needed.",
+      "- Do not silently substitute another country, agenda, or committee.",
+      "- If an answer involves both agendas, clearly separate the analysis by agenda.",
+      "- Current positions, recent votes, treaties, officeholders, statistics, and other time-sensitive country facts require current research rather than relying only on the hardcoded UN knowledge base.",
+    ].filter(Boolean).join("\n")
+
+    const retrievalPrompt = `${delegateContext}\n\nUSER REQUEST:\n${prompt}`
+    const unContext = buildUNContext(retrievalPrompt)
+
     const { completion, provider } = await chatWithFallback({
       messages: [
         {
           role: "system",
-          content: `You are MUN AI, a careful Model United Nations preparation assistant. Do not invent facts or citations. Give practical, structured MUN guidance.\n\n${buildUNContext(prompt)}`,
+          content: `You are MUN AI, a careful Model United Nations preparation assistant.
+
+The following delegate context is mandatory and applies to every response:
+${delegateContext}
+
+Use the retrieved UN/MUN reference material below as grounding. Do not invent facts or citations. Give practical, structured MUN guidance. Keep the user's country/delegation and every active agenda in mind unless the user explicitly changes them.
+
+RETRIEVED UN/MUN REFERENCE:
+${unContext}`,
         },
         { role: "user", content: prompt },
       ],
