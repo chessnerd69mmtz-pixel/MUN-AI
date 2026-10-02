@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { chatWithFallback, type RuntimeApiKeys } from "@/lib/ai"
 import { buildUNContext } from "@/lib/un-knowledge"
+import { buildNivSystemPrompt } from "@/lib/niv-engine"
 
 function clean(value: unknown, max = 500) {
   return typeof value === "string" ? value.trim().slice(0, max) : ""
@@ -30,6 +31,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Set at least one committee agenda before asking MUN AI." }, { status: 400 })
     }
 
+    const rawHistory = Array.isArray(body?.conversationHistory) ? body.conversationHistory : []
+    const conversationHistory = rawHistory
+      .filter((item: unknown) => item && typeof item === "object")
+      .slice(-8)
+      .map((item: any) => ({
+        role: item.role === "assistant" ? "assistant" : "user",
+        content: clean(item.content, 2500),
+      }))
+      .filter((item: { content: string }) => item.content)
+
     const rawKeys = body?.apiKeys && typeof body.apiKeys === "object" ? body.apiKeys : {}
     const apiKeys: RuntimeApiKeys = {
       groq: typeof rawKeys.groq === "string" ? rawKeys.groq.trim() : "",
@@ -56,20 +67,19 @@ export async function POST(request: Request) {
     const retrievalPrompt = `${delegateContext}\n\nUSER REQUEST:\n${prompt}`
     const unContext = buildUNContext(retrievalPrompt)
 
+    const systemPrompt = buildNivSystemPrompt({
+      prompt,
+      delegateContext,
+      unContext,
+      conversationContext: conversationHistory.length
+        ? conversationHistory.map((item: { role: string; content: string }) => `${item.role.toUpperCase()}: ${item.content}`).join("\n\n")
+        : "",
+    })
+
     const { completion, provider } = await chatWithFallback({
       messages: [
-        {
-          role: "system",
-          content: `You are MUN AI, a careful Model United Nations preparation assistant.
-
-The following delegate context is mandatory and applies to every response:
-${delegateContext}
-
-Use the retrieved UN/MUN reference material below as grounding. Do not invent facts or citations. Give practical, structured MUN guidance. Keep the user's country/delegation and every active agenda in mind unless the user explicitly changes them.
-
-RETRIEVED UN/MUN REFERENCE:
-${unContext}`,
-        },
+        { role: "system", content: systemPrompt },
+        ...conversationHistory,
         { role: "user", content: prompt },
       ],
     }, { mode, apiKeys })
