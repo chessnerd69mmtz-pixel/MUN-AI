@@ -75,7 +75,14 @@ export default function Home() {
       const nextAnswer = data?.answer || "No response returned."
       setAnswer(nextAnswer)
       setProvider(data?.provider || "")
-      setNivHistory(history => {\n        const nextHistory: NivMessage[] = [\n          ...history,\n          { role: "user", content: prompt },\n          { role: "assistant", content: nextAnswer },\n        ]\n        return nextHistory.slice(-12)\n      })
+      setNivHistory(history => {
+        const nextHistory: NivMessage[] = [
+          ...history,
+          { role: "user", content: prompt },
+          { role: "assistant", content: nextAnswer },
+        ]
+        return nextHistory.slice(-12)
+      })
     } catch (e) {
       setError(e instanceof Error ? e.message : "Request failed.")
     } finally { setLoading(false) }
