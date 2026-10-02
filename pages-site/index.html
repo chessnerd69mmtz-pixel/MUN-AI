@@ -173,8 +173,19 @@ if(mode==="niv"&&state.nivHistory.length){
 messages=messages.concat(state.nivHistory.slice(-8).map(function(m){return {role:m.role==="assistant"?"assistant":"user",content:String(m.content||"").slice(0,2500)}}));
 }
 messages.push({role:"user",content:user});
-var r=await fetch(endpoint,{method:"POST",headers:requestHeaders,body:JSON.stringify({model:model,temperature:.2,messages:messages})});
-var txt=await r.text(),d={};
+var endpoints=provider==="ollama"?["http://127.0.0.1:11435/v1/chat/completions","http://127.0.0.1:11434/v1/chat/completions"]:[endpoint];
+var r=null,txt="",d={},lastError=null;
+for(var ei=0;ei<endpoints.length;ei++){
+try{
+r=await fetch(endpoints[ei],{method:"POST",headers:requestHeaders,body:JSON.stringify({model:model,temperature:.2,messages:messages})});
+txt=await r.text();
+if(r.ok)break;
+lastError=new Error("AI request failed ("+r.status+").");
+}catch(fetchError){
+lastError=fetchError;
+}
+}
+if(!r)throw lastError||new Error("AI request failed.");
 try{d=JSON.parse(txt)}catch(e){throw new Error("The AI provider returned invalid JSON.")}
 if(!r.ok){
 var apiMsg=d&&d.error&&(d.error.message||d.error.error)?(d.error.message||d.error.error):"AI request failed ("+r.status+").";
