@@ -28,7 +28,7 @@ window.MUN_UN_KNOWLEDGE_BASE="UNITED NATIONS / MUN REFERENCE KNOWLEDGE\n\n1. UN 
       sections.push({number:first?Number(first[1]):0,title:first?first[2]:"Core reference",text:text});
     }
     lines.forEach(function(line){
-      var heading=line.match(/^(\d+)\. ([A-Z][A-Z0-9 —’'()&/.-]*)$/);
+      var heading=line.match(/^(\d+)\. ([A-Z][A-Z0-9 —’'()&\/.-]*)$/);
       if(heading&&current.length){push();current=[line]}else current.push(line);
     });
     push(); return sections;
