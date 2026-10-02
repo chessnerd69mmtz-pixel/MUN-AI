@@ -744,7 +744,7 @@ function splitKnowledgeSections() {
   let current: string[] = []
 
   for (const line of lines) {
-    const heading = line.match(/^(\d+)\. ([A-Z][A-Z0-9 —’'()&/.-]*)$/)
+    const heading = line.match(/^(\d+)\. ([A-Z][A-Z0-9 —’'()&\/.-]*)$/)
     if (heading && current.length > 0) {
       const text = current.join("\n").trim()
       const first = text.match(/^(\d+)\. ([^\n]+)/)
