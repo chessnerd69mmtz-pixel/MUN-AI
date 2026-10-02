@@ -21,9 +21,15 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [keys, setKeys] = useState({ groq: "", mistral: "", unlimitless: "" })
+  const [nivHistory, setNivHistory] = useState<{role: "user" | "assistant"; content: string}[]>([])
 
   useEffect(() => {
     try {
+      const savedHistory = localStorage.getItem("mun-ai-niv-history")
+      if (savedHistory) {
+        const parsedHistory = JSON.parse(savedHistory)
+        if (Array.isArray(parsedHistory)) setNivHistory(parsedHistory.filter((item) => item && (item.role === "user" || item.role === "assistant") && typeof item.content === "string").slice(-12))
+      }
       const saved = localStorage.getItem("mun-ai-delegate-context")
       if (saved) {
         const parsed = JSON.parse(saved)
@@ -35,6 +41,10 @@ export default function Home() {
       // Ignore malformed local preferences.
     }
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem("mun-ai-niv-history", JSON.stringify(nivHistory.slice(-12)))
+  }, [nivHistory])
 
   useEffect(() => {
     localStorage.setItem(
@@ -53,13 +63,16 @@ export default function Home() {
           prompt,
           mode,
           delegateContext: { country, agendas: [agenda1, agenda2].filter(Boolean) },
+          conversationHistory: mode === "ollama" ? nivHistory.slice(-8) : undefined,
           apiKeys: mode === "api" ? keys : undefined,
         })
       })
       const data = await r.json()
       if (!r.ok) throw new Error(data?.error || "AI request failed")
-      setAnswer(data?.answer || "No response returned.")
+      const nextAnswer = data?.answer || "No response returned."
+      setAnswer(nextAnswer)
       setProvider(data?.provider || "")
+      setNivHistory(history => [...history, { role: "user", content: prompt }, { role: "assistant", content: nextAnswer }].slice(-12))
     } catch (e) {
       setError(e instanceof Error ? e.message : "Request failed.")
     } finally { setLoading(false) }
@@ -141,7 +154,7 @@ export default function Home() {
       </button>
 
       {error && <div className="error">{error}</div>}
-      {answer && <article><h2>Response</h2><div className="note">Provider used: {provider}</div><pre>{answer}</pre></article>}
+      {answer && <article><h2>Response</h2><div className="note">Provider used: {provider}{mode === "ollama" ? " • Niv keeps the last few turns locally for continuity" : ""}</div><pre>{answer}</pre>{mode === "ollama" && nivHistory.length > 0 && <button className="secondary" onClick={() => setNivHistory([])}>Clear local Niv conversation</button>}</article>}
 
       {mode === "ollama"
         ? <p className="note">Local model: llama3.2 via Ollama. Cloud APIs are not used in this mode.</p>
