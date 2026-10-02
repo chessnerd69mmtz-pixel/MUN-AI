@@ -35,6 +35,7 @@ export default function Home() {
       if (saved) {
         const parsed = JSON.parse(saved)
         setCountry(typeof parsed.country === "string" ? parsed.country : "")
+        setCommittee(typeof parsed.committee === "string" ? parsed.committee : "")
         setAgenda1(typeof parsed.agenda1 === "string" ? parsed.agenda1 : "")
         setAgenda2(typeof parsed.agenda2 === "string" ? parsed.agenda2 : "")
       }
