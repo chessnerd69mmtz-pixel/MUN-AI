@@ -3,7 +3,8 @@ const { spawn } = require("child_process");
 
 const HOST = "127.0.0.1";
 const PORT = Number(process.env.MUN_AI_BRIDGE_PORT || 11435);
-const OLLAMA = process.env.OLLAMA_BASE_URL || "http://127.0.0.1:11434";
+const configured = process.env.OLLAMA_BASE_URL || "http://127.0.0.1:11434";
+const OLLAMA = configured.replace(/\/v1\/?$/, "");
 
 function send(res, status, data, type = "application/json") {
   const body = typeof data === "string" ? data : JSON.stringify(data);
