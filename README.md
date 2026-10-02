@@ -4,7 +4,7 @@ A local MUN command center for research, strategy, live committee support, posit
 
 ## Local Ollama mode — no AI API tokens required
 
-MUN AI now defaults to local Ollama inference. The normal local launcher uses `http://127.0.0.1:11434` with the `llama3.2` model. If Ollama is unavailable or the model is missing, MUN AI shows an error and **does not fall back to OpenAI, Groq, Mistral or Vireonix**. This prevents a local failure from silently consuming cloud API quota.
+MUN AI now defaults to local Ollama inference. The normal local launcher uses `http://127.0.0.1:11434` with the `llama3.2` model. If Ollama is unavailable or the model is missing, MUN AI shows an error and **does not fall back to Groq, Mistral or Vireonix**. This prevents a local failure from silently consuming cloud API quota.
 
 Run `ollama pull llama3.2` once if the model is not installed, then double-click `START-MUN-AI.bat`.
 
@@ -14,14 +14,7 @@ Cloud providers remain in the code only as explicit opt-in providers; they are n
 
 This repository does **not** contain developer API keys. Every user running MUN AI must create and enter their own keys during `setup.bat`.
 
-### 1. OpenAI
-Create an OpenAI API key here:
-
-https://platform.openai.com/api-keys
-
-MUN AI uses OpenAI as an optional user-supplied provider. The default OpenAI model is `gpt-5.6-luna`; you can change it with `OPENAI_MODEL`.
-
-### 2. Groq
+### 1. Groq
 Create a Groq API key here:
 
 https://console.groq.com/keys
@@ -123,12 +116,11 @@ The application keeps MUN workspace data in browser localStorage. Do not clear t
 Ordinary text generation defaults to:
 
 1. **Ollama — local and default** (`llama3.2` at `127.0.0.1:11434`).
-2. OpenAI — explicit opt-in only with `AI_PROVIDER=openai`.
-3. Groq — explicit opt-in only with `AI_PROVIDER=groq`.
-4. Mistral — explicit opt-in only with `AI_PROVIDER=mistral`.
-5. Vireonix — explicit opt-in only with `AI_PROVIDER=vireonix`.
+2. Groq — opt-in API provider.
+3. Mistral — opt-in API provider.
+4. Unlimitless — opt-in API provider.
 
-Unlimitless is **not** used as a fake drop-in chat model. Its current API is a reasoning/context service over settled user-authored decisions. MUN AI uses it for Niv AI and Brainstorm context.
+Unlimitless remains an opt-in provider for supported reasoning/context workflows.
 
 Live fact verification in Committee Room remains separate from ordinary generation so a fallback model is not presented as proof of current facts.
 
@@ -136,7 +128,7 @@ Live fact verification in Committee Room remains separate from ordinary generati
 
 This repository is prepared to be public:
 
-- No `.env.local` is committed.
+- No API keys are committed.
 - `.env.example` contains blank placeholders only.
 - Local credentials are ignored by Git.
 - Users create and enter their own API keys during setup.
