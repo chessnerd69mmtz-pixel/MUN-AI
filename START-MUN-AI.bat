@@ -3,6 +3,11 @@ setlocal EnableExtensions
 cd /d "%~dp0"
 title MUN AI
 
+rem Force local Ollama mode for this launcher. Cloud providers are never auto-used.
+set "AI_PROVIDER=ollama"
+set "OLLAMA_BASE_URL=http://127.0.0.1:11434/v1"
+set "OLLAMA_MODEL=llama3.2"
+
 :START
 cls
 echo ==========================================
