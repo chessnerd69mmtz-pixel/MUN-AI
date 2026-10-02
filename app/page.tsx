@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 
 type Mode = "ollama" | "api"
+type NivMessage = { role: "user" | "assistant"; content: string }
 
 const DEFAULT_CONTEXT = {
   country: "",
@@ -22,7 +23,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [keys, setKeys] = useState({ groq: "", mistral: "", unlimitless: "" })
-  const [nivHistory, setNivHistory] = useState<{role: "user" | "assistant"; content: string}[]>([])
+  const [nivHistory, setNivHistory] = useState<NivMessage[]>([])
 
   useEffect(() => {
     try {
@@ -53,7 +54,7 @@ export default function Home() {
       "mun-ai-delegate-context",
       JSON.stringify({ country, committee, agenda1, agenda2 }),
     )
-  }, [country, agenda1, agenda2])
+  }, [country, committee, agenda1, agenda2])
 
   async function run() {
     setLoading(true); setError(""); setAnswer("")
@@ -74,7 +75,7 @@ export default function Home() {
       const nextAnswer = data?.answer || "No response returned."
       setAnswer(nextAnswer)
       setProvider(data?.provider || "")
-      setNivHistory(history => [...history, { role: "user", content: prompt }, { role: "assistant", content: nextAnswer }].slice(-12))
+      setNivHistory(history => {\n        const nextHistory: NivMessage[] = [\n          ...history,\n          { role: "user", content: prompt },\n          { role: "assistant", content: nextAnswer },\n        ]\n        return nextHistory.slice(-12)\n      })
     } catch (e) {
       setError(e instanceof Error ? e.message : "Request failed.")
     } finally { setLoading(false) }
