@@ -9,7 +9,7 @@ echo              MUN AI - LOCAL SETUP
 echo ==========================================
 echo.
 echo MUN AI now defaults to local Ollama.
-echo No OpenAI, Groq, Mistral or Unlimitless API key is required
+echo No cloud API key is required
 echo for the normal local AI experience.
 echo.
 
@@ -64,8 +64,6 @@ if errorlevel 1 (
 >> .env.local echo OLLAMA_MODEL=llama3.2
 >> .env.local echo.
 >> .env.local echo # Cloud providers are intentionally disabled unless AI_PROVIDER is changed manually.
->> .env.local echo OPENAI_API_KEY=
->> .env.local echo OPENAI_MODEL=gpt-5.6-luna
 >> .env.local echo GROQ_API_KEY=
 >> .env.local echo GROQ_MODEL=groq/compound
 >> .env.local echo GROQ_WRITING_MODEL=openai/gpt-oss-120b
