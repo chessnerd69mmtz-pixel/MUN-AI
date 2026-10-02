@@ -170,6 +170,19 @@ Before accepting a draft, check authority, funding, clause conflicts, duplicatio
     }).filter(function(section){return section.text.length>0});
   }
   var sections=split();
+  var TASK_SECTION_HINTS={
+    poi:[50,53,72,74],
+    speech:[50,73,74],
+    rebuttal:[50,71,72,74],
+    strategy:[51,65,66,70,78,84],
+    negotiation:[51,65,66,78,84],
+    resolution:[52,67,68,69,77,79],
+    procedure:[53,79,83],
+    research:[49,60,75,76,80,86],
+    country:[58,60,75,76,78,86],
+    crisis:[54,82,83,84],
+    chair:[53,79,83]
+  };
   function tokenize(value){
     return new Set(String(value||"").toLowerCase().replace(/[^a-z0-9\s-]/g," ").split(/\s+/).filter(function(word){return word.length>=3}));
   }
@@ -191,10 +204,27 @@ Before accepting a draft, check authority, funding, clause conflicts, duplicatio
     var prompt=String(userPrompt||"").trim();
     var ranked=sections.map(function(section){return {section:section,score:score(section,prompt)}}).sort(function(a,b){return b.score-a.score});
     var selected=new Set(CORE_SECTIONS);
-    for(var i=0;i<ranked.length && selected.size<18;i++){
+    var lower=prompt.toLowerCase();
+    var triggers={
+      poi:/\bpoi\b|point of information|question to/i,
+      speech:/speech|gsl|opening statement|moderated caucus/i,
+      rebuttal:/rebuttal|counter argument|respond to/i,
+      strategy:/strategy|next move|game plan|tactical/i,
+      negotiation:/negotiat|bloc|coalition|ally|compromise|red line/i,
+      resolution:/resolution|operative|preambulatory|clause|working paper/i,
+      procedure:/procedure|motion|quorum|point of order|moderated caucus|unmoderated caucus/i,
+      research:/research|source|citation|current|latest|recent|statistic/i,
+      country:/country position|national position|foreign policy|voting record|treaty status/i,
+      crisis:/crisis|emergency|directive|backroom/i,
+      chair:/chair|presiding|chair simulator/i
+    };
+    Object.keys(triggers).forEach(function(task){
+      if(triggers[task].test(lower))TASK_SECTION_HINTS[task].forEach(function(number){selected.add(number)});
+    });
+    for(var i=0;i<ranked.length && selected.size<24;i++){
       if(ranked[i].score>=1.75)selected.add(ranked[i].section.number);
     }
-    if(selected.size<10){
+    if(selected.size<12){
       for(var j=0;j<ranked.length && selected.size<10;j++)selected.add(ranked[j].section.number);
     }
     var chosen=sections.filter(function(section){return selected.has(section.number)}).sort(function(a,b){return a.number-b.number});
