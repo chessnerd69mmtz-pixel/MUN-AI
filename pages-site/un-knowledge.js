@@ -19,67 +19,34 @@ window.MUN_UN_KNOWLEDGE_BASE="UNITED NATIONS / MUN REFERENCE KNOWLEDGE\n\n1. UN 
     diplomacy:["diplomacy","delegate","bloc","coalition","ally","negotiation","rebuttal","speech","position","national interest"],
     research:["current","latest","today","recent","source","citation","vote","voting record","country position","official statement"]
   };
-  var TASK_SECTION_HINTS={
-    poi:[50,53,72,74],
-    speech:[50,73,74],
-    rebuttal:[50,71,72,74],
-    strategy:[51,65,66,70,78,84],
-    negotiation:[51,65,66,78,84],
-    resolution:[52,67,68,69,77,79],
-    procedure:[53,79,83,88],
-    research:[49,60,75,76,80,86,88],
-    country:[58,60,75,76,78,86],
-    crisis:[54,82,83,84],
-    chair:[53,79,83]
-  };
+  var TASK_SECTION_HINTS={poi:[50,53,72,74],speech:[50,73,74],rebuttal:[50,71,72,74],strategy:[51,65,66,70,78,84],negotiation:[51,65,66,78,84],resolution:[52,67,68,69,77,79],procedure:[53,79,83,88],research:[49,60,75,76,80,86,88],country:[58,60,75,76,78,86],crisis:[54,82,83,84],chair:[53,79,83]};
   function split(){
-    return window.MUN_UN_KNOWLEDGE_BASE.split(/\n(?=\d+\. )/).map(function(section){
-      var match=section.match(/^(\d+)\. ([^\n]+)/);
-      return {number:match?Number(match[1]):0,title:match?match[2]:"Core reference",text:section.trim()};
-    }).filter(function(section){return section.text.length>0});
+    var lines=window.MUN_UN_KNOWLEDGE_BASE.split("\n"),sections=[],current=[];
+    function push(){
+      var text=current.join("\n").trim(); if(!text)return;
+      var first=text.match(/^(\d+)\. ([^\n]+)/);
+      sections.push({number:first?Number(first[1]):0,title:first?first[2]:"Core reference",text:text});
+    }
+    lines.forEach(function(line){
+      var heading=line.match(/^(\d+)\. ([A-Z][A-Z0-9 —’'()&/.-]*)$/);
+      if(heading&&current.length){push();current=[line]}else current.push(line);
+    });
+    push(); return sections;
   }
   var sections=split();
-  function tokenize(value){
-    return new Set(String(value||"").toLowerCase().replace(/[^a-z0-9\s-]/g," ").split(/\s+/).filter(function(word){return word.length>=3}));
-  }
+  function tokenize(value){return new Set(String(value||"").toLowerCase().replace(/[^a-z0-9\s-]/g," ").split(/\s+/).filter(function(word){return word.length>=3})}
   function score(section,prompt){
     var tokens=tokenize(prompt),lower=String(prompt||"").toLowerCase(),hay=section.text.toLowerCase(),value=CORE_SECTIONS.has(section.number)?1.5:0;
-    tokens.forEach(function(token){
-      if(section.title.toLowerCase().indexOf(token)!==-1)value+=5;
-      if(hay.indexOf(token)!==-1)value+=0.35;
-    });
-    Object.keys(TOPIC_ALIASES).forEach(function(key){
-      TOPIC_ALIASES[key].forEach(function(alias){
-        if(hay.indexOf(alias)!==-1&&lower.indexOf(alias)!==-1)value+=2;
-      });
-    });
+    tokens.forEach(function(token){if(section.title.toLowerCase().indexOf(token)!==-1)value+=5;if(hay.indexOf(token)!==-1)value+=0.35});
+    Object.keys(TOPIC_ALIASES).forEach(function(key){TOPIC_ALIASES[key].forEach(function(alias){if(hay.indexOf(alias)!==-1&&lower.indexOf(alias)!==-1)value+=2})});
     return value;
   }
   window.buildMUNUNContext=function(userPrompt){
-    var prompt=String(userPrompt||"").trim(),ranked=sections.map(function(section){return {section:section,score:score(section,prompt)}}).sort(function(a,b){return b.score-a.score});
-    var selected=new Set(CORE_SECTIONS),lower=prompt.toLowerCase();
-    var triggers={
-      poi:/\bpoi\b|point of information|question to/i,
-      speech:/speech|gsl|opening statement|moderated caucus/i,
-      rebuttal:/rebuttal|counter argument|respond to/i,
-      strategy:/strategy|next move|game plan|tactical/i,
-      negotiation:/negotiat|bloc|coalition|ally|compromise|red line/i,
-      resolution:/resolution|operative|preambulatory|clause|working paper/i,
-      procedure:/procedure|motion|quorum|point of order|moderated caucus|unmoderated caucus/i,
-      research:/research|source|citation|current|latest|recent|statistic/i,
-      country:/country position|national position|foreign policy|voting record|treaty status/i,
-      crisis:/crisis|emergency|directive|backroom/i,
-      chair:/chair|presiding|chair simulator/i
-    };
-    Object.keys(triggers).forEach(function(task){
-      if(triggers[task].test(lower))TASK_SECTION_HINTS[task].forEach(function(number){selected.add(number)});
-    });
-    for(var i=0;i<ranked.length&&selected.size<24;i++){
-      if(ranked[i].score>=1.75)selected.add(ranked[i].section.number);
-    }
-    if(selected.size<12){
-      for(var j=0;j<ranked.length&&selected.size<12;j++)selected.add(ranked[j].section.number);
-    }
+    var prompt=String(userPrompt||"").trim(),ranked=sections.map(function(section){return {section:section,score:score(section,prompt)}}).sort(function(a,b){return b.score-a.score}),selected=new Set(CORE_SECTIONS),lower=prompt.toLowerCase();
+    var triggers={poi:/\bpoi\b|point of information|question to/i,speech:/speech|gsl|opening statement|moderated caucus/i,rebuttal:/rebuttal|counter argument|respond to/i,strategy:/strategy|next move|game plan|tactical/i,negotiation:/negotiat|bloc|coalition|ally|compromise|red line/i,resolution:/resolution|operative|preambulatory|clause|working paper/i,procedure:/procedure|motion|quorum|point of order|moderated caucus|unmoderated caucus/i,research:/research|source|citation|current|latest|recent|statistic/i,country:/country position|national position|foreign policy|voting record|treaty status/i,crisis:/crisis|emergency|directive|backroom/i,chair:/chair|presiding|chair simulator/i};
+    Object.keys(triggers).forEach(function(task){if(triggers[task].test(lower))TASK_SECTION_HINTS[task].forEach(function(number){selected.add(number)})});
+    for(var i=0;i<ranked.length&&selected.size<24;i++){if(ranked[i].score>=1.75)selected.add(ranked[i].section.number)}
+    if(selected.size<12){for(var j=0;j<ranked.length&&selected.size<12;j++)selected.add(ranked[j].section.number)}
     var chosen=sections.filter(function(section){return selected.has(section.number)}).sort(function(a,b){return a.number-b.number});
     return ["Use the following locally stored UN/MUN reference knowledge to ground your answer.","The full research library is stored locally in this application; these are the most relevant retrieved sections for this request.","This is a static reference layer: current events, current country positions, exact recent voting records and live statistics still require current research.","",chosen.map(function(section){return section.text}).join("\n\n")].join("\n\n");
   };
