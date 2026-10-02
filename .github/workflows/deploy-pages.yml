@@ -35,6 +35,9 @@ jobs:
       - name: Validate Next.js production build
         run: npm run build
 
+      - name: Check dependency vulnerabilities
+        run: npm audit --audit-level=high
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
