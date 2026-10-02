@@ -2,11 +2,16 @@
 
 import { useState } from "react"
 
+type Mode = "ollama" | "api"
+
 export default function Home() {
+  const [mode, setMode] = useState<Mode>("ollama")
   const [prompt, setPrompt] = useState("Help me prepare a strong MUN strategy for my agenda.")
   const [answer, setAnswer] = useState("")
+  const [provider, setProvider] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [keys, setKeys] = useState({ openai: "", groq: "", mistral: "", unlimitless: "" })
 
   async function run() {
     setLoading(true); setError(""); setAnswer("")
@@ -14,11 +19,16 @@ export default function Home() {
       const r = await fetch("/api/chat", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({
+          prompt,
+          mode,
+          apiKeys: mode === "api" ? keys : undefined,
+        })
       })
       const data = await r.json()
-      if (!r.ok) throw new Error(data?.error || `Local Ollama request failed (${r.status})`)
+      if (!r.ok) throw new Error(data?.error || "AI request failed")
       setAnswer(data?.answer || "No response returned.")
+      setProvider(data?.provider || "")
     } catch (e) {
       setError(e instanceof Error ? e.message : "Request failed.")
     } finally { setLoading(false) }
@@ -28,13 +38,54 @@ export default function Home() {
     <section className="card">
       <div className="badge">MUN AI</div>
       <h1>Delegate Intelligence</h1>
-      <p>Running in local Ollama mode. AI requests stay on this computer and do not use OpenAI, Groq or Mistral API tokens.</p>
+
+      <h2>AI Mode</h2>
+      <div className="mode-grid">
+        <button className={mode === "ollama" ? "selected" : ""} onClick={() => setMode("ollama")}>
+          Ollama Only
+          <small>Private • Local • No API usage</small>
+        </button>
+        <button className={mode === "api" ? "selected" : ""} onClick={() => setMode("api")}>
+          API Keys
+          <small>OpenAI • Groq • Mistral • Unlimitless</small>
+        </button>
+      </div>
+
+      {mode === "api" && <div className="keys-panel">
+        <h2>API Keys</h2>
+        <p>Keys are sent to your local Next.js server for the request and are not saved by this page.</p>
+        {([
+          ["openai", "OpenAI API Key"],
+          ["groq", "Groq API Key"],
+          ["mistral", "Mistral API Key"],
+          ["unlimitless", "Unlimitless API Key"],
+        ] as const).map(([name, label]) => (
+          <label key={name}>
+            {label}
+            <input
+              type="password"
+              value={keys[name]}
+              onChange={e => setKeys(k => ({...k, [name]: e.target.value}))}
+              placeholder={"Enter " + label}
+              autoComplete="off"
+            />
+          </label>
+        ))}
+        <p className="note">API routing tries configured providers in this order: OpenAI → Groq → Mistral → Unlimitless. Later keys are used only if an earlier configured provider fails.</p>
+      </div>}
+
       <label>What do you need help with?</label>
       <textarea value={prompt} onChange={e=>setPrompt(e.target.value)} />
-      <button onClick={run} disabled={loading}>{loading ? "Thinking locally…" : "Ask MUN AI"}</button>
+      <button onClick={run} disabled={loading}>
+        {loading ? (mode === "ollama" ? "Thinking locally…" : "Thinking with API…") : "Ask MUN AI"}
+      </button>
+
       {error && <div className="error">{error}</div>}
-      {answer && <article><h2>Response</h2><pre>{answer}</pre></article>}
-      <p className="note">Local model: llama3.2 via Ollama. Make sure Ollama is running before using AI features.</p>
+      {answer && <article><h2>Response</h2><div className="note">Provider used: {provider}</div><pre>{answer}</pre></article>}
+
+      {mode === "ollama"
+        ? <p className="note">Local model: llama3.2 via Ollama. Cloud APIs are not used in this mode.</p>
+        : <p className="note">API mode is opt-in. Your keys are used only for the current request and are not written into the repository.</p>}
     </section>
   </main>
 }
