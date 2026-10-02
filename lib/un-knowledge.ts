@@ -742,6 +742,20 @@ function splitKnowledgeSections() {
 
 const KNOWLEDGE_SECTIONS = splitKnowledgeSections()
 
+const TASK_SECTION_HINTS: Record<string, number[]> = {
+  poi: [50, 53, 72, 74],
+  speech: [50, 73, 74],
+  rebuttal: [50, 71, 72, 74],
+  strategy: [51, 65, 66, 70, 78, 84],
+  negotiation: [51, 65, 66, 78, 84],
+  resolution: [52, 67, 68, 69, 77, 79],
+  procedure: [53, 79, 83],
+  research: [49, 60, 75, 76, 80, 86],
+  country: [58, 60, 75, 76, 78, 86],
+  crisis: [54, 82, 83, 84],
+  chair: [53, 79, 83],
+}
+
 function tokenize(value: string) {
   return new Set(
     value
@@ -780,17 +794,39 @@ export function buildUNContext(userPrompt: string) {
   // relevant sections. This keeps local context useful without sending ~47K
   // characters on every request.
   const selectedNumbers = new Set<number>(CORE_SECTIONS)
+
+  // Deterministic task anchors prevent lexical retrieval from missing the
+  // MUN-specific playbook when the user's wording is short (e.g. "give me a POI").
+  const lowerPrompt = prompt.toLowerCase()
+  const taskKeys = Object.keys(TASK_SECTION_HINTS)
+  for (const task of taskKeys) {
+    const trigger = task === "poi" ? /\bpoi\b|point of information|question to/i
+      : task === "speech" ? /speech|gsl|opening statement|moderated caucus/i
+      : task === "rebuttal" ? /rebuttal|counter argument|respond to/i
+      : task === "strategy" ? /strategy|next move|game plan|tactical/i
+      : task === "negotiation" ? /negotiat|bloc|coalition|ally|compromise|red line/i
+      : task === "resolution" ? /resolution|operative|preambulatory|clause|working paper/i
+      : task === "procedure" ? /procedure|motion|quorum|point of order|moderated caucus|unmoderated caucus/i
+      : task === "research" ? /research|source|citation|current|latest|recent|statistic/i
+      : task === "country" ? /country position|national position|foreign policy|voting record|treaty status/i
+      : task === "crisis" ? /crisis|emergency|directive|backroom/i
+      : /chair|presiding|chair simulator/i
+    if (trigger.test(lowerPrompt)) {
+      for (const number of TASK_SECTION_HINTS[task]) selectedNumbers.add(number)
+    }
+  }
+
   for (const item of ranked) {
-    if (selectedNumbers.size >= 18) break
+    if (selectedNumbers.size >= 24) break
     if (item.score >= 1.75) selectedNumbers.add(item.section.number)
   }
 
   // If a very short/ambiguous prompt produces few matches, add the strongest
   // sections so Ollama still receives useful domain grounding.
-  if (selectedNumbers.size < 10) {
+  if (selectedNumbers.size < 12) {
     for (const item of ranked) {
       selectedNumbers.add(item.section.number)
-      if (selectedNumbers.size >= 10) break
+      if (selectedNumbers.size >= 12) break
     }
   }
 
