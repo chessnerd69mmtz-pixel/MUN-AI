@@ -34,7 +34,7 @@ window.MUN_UN_KNOWLEDGE_BASE="UNITED NATIONS / MUN REFERENCE KNOWLEDGE\n\n1. UN 
     push(); return sections;
   }
   var sections=split();
-  function tokenize(value){return new Set(String(value||"").toLowerCase().replace(/[^a-z0-9\s-]/g," ").split(/\s+/).filter(function(word){return word.length>=3})}
+  function tokenize(value){return new Set(String(value||"").toLowerCase().replace(/[^a-z0-9\s-]/g," ").split(/\s+/).filter(function(word){return word.length>=3}))}
   function score(section,prompt){
     var tokens=tokenize(prompt),lower=String(prompt||"").toLowerCase(),hay=section.text.toLowerCase(),value=CORE_SECTIONS.has(section.number)?1.5:0;
     tokens.forEach(function(token){if(section.title.toLowerCase().indexOf(token)!==-1)value+=5;if(hay.indexOf(token)!==-1)value+=0.35});
