@@ -3,7 +3,6 @@
 import { useState } from "react"
 
 export default function Home() {
-  const [key, setKey] = useState("")
   const [prompt, setPrompt] = useState("Help me prepare a strong MUN strategy for my agenda.")
   const [answer, setAnswer] = useState("")
   const [loading, setLoading] = useState(false)
@@ -12,21 +11,14 @@ export default function Home() {
   async function run() {
     setLoading(true); setError(""); setAnswer("")
     try {
-      if (!key.trim()) throw new Error("Enter your OpenAI API key first.")
-      const r = await fetch("https://api.openai.com/v1/chat/completions", {
+      const r = await fetch("/api/chat", {
         method: "POST",
-        headers: {"Content-Type":"application/json","Authorization":`Bearer ${key.trim()}`},
-        body: JSON.stringify({
-          model: "gpt-5.6-luna",
-          messages: [
-            {role:"system", content:"You are MUN AI, a careful Model United Nations preparation assistant. Do not invent facts or citations. Give practical, structured MUN guidance."},
-            {role:"user", content: prompt}
-          ]
-        })
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ prompt })
       })
       const data = await r.json()
-      if (!r.ok) throw new Error(data?.error?.message || `OpenAI request failed (${r.status})`)
-      setAnswer(data?.choices?.[0]?.message?.content || "No response returned.")
+      if (!r.ok) throw new Error(data?.error || `Local Ollama request failed (${r.status})`)
+      setAnswer(data?.answer || "No response returned.")
     } catch (e) {
       setError(e instanceof Error ? e.message : "Request failed.")
     } finally { setLoading(false) }
@@ -36,15 +28,13 @@ export default function Home() {
     <section className="card">
       <div className="badge">MUN AI</div>
       <h1>Delegate Intelligence</h1>
-      <p>Local MUN workspace with optional OpenAI API access. Your key is used directly by your browser and is not stored by this page.</p>
-      <label>OpenAI API key</label>
-      <input type="password" value={key} onChange={e=>setKey(e.target.value)} placeholder="sk-..." />
+      <p>Running in local Ollama mode. AI requests stay on this computer and do not use OpenAI, Groq or Mistral API tokens.</p>
       <label>What do you need help with?</label>
       <textarea value={prompt} onChange={e=>setPrompt(e.target.value)} />
-      <button onClick={run} disabled={loading}>{loading ? "Thinking…" : "Ask MUN AI"}</button>
+      <button onClick={run} disabled={loading}>{loading ? "Thinking locally…" : "Ask MUN AI"}</button>
       {error && <div className="error">{error}</div>}
       {answer && <article><h2>Response</h2><pre>{answer}</pre></article>}
-      <p className="note">For the full GitHub Pages interface, open the deployed Pages site from the repository README.</p>
+      <p className="note">Local model: llama3.2 via Ollama. Make sure Ollama is running before using AI features.</p>
     </section>
   </main>
 }
