@@ -75,7 +75,7 @@ async function runProvider(provider: Provider, options: any, keys?: RuntimeApiKe
 /**
  * Uses Ollama only by default.
  *
- * In API mode, the four user-supplied keys form an explicit fallback pool:
+ * In API mode, the supported user-supplied keys form an explicit fallback pool:
  * Groq -> Mistral -> Unlimitless. A later provider is only tried
  * when an earlier configured provider fails, so keys are not all consumed
  * for every successful request.
