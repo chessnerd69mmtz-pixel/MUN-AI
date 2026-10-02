@@ -45,6 +45,7 @@ a{text-decoration:none}
 <body>
 <div id="root"></div>
 <script src="./un-knowledge.js"></script>
+<script src="./mun-intelligence.js"></script>
 <script src="./niv-engine.js"></script>
 <script>
 var K="munai-pages-v2";
@@ -155,7 +156,8 @@ if(mode==="niv"&&state.nivHistory.length){
 history=state.nivHistory.slice(-8).map(function(m){return String(m.role||"user").toUpperCase()+": "+String(m.content||"")}).join("\n\n");
 }
 var system="You are MUN AI, a careful Model United Nations preparation assistant. "+delegateContext+". Do not invent facts or citations. Use clear headings, short paragraphs and bullets. When both agendas are selected, label each agenda explicitly and separate shared points from agenda-specific points.";
-var niv=window.buildNivPrompt?window.buildNivPrompt(prompt,delegateContext,window.buildMUNUNContext?window.buildMUNUNContext(system+"\n"+baseUser):"",history):null;
+var intelligence=window.buildNivIntelligenceContext?window.buildNivIntelligenceContext(state.profile.country||"",state.profile.committee||""):"";
+var niv=window.buildNivPrompt?window.buildNivPrompt(prompt,delegateContext,(window.buildMUNUNContext?window.buildMUNUNContext(system+"\n"+baseUser):"")+"\n\n"+intelligence,history):null;
 if(mode==="niv"&&niv)system=niv.system;
 var user=baseUser+"\n\nProduce a polished MUN-ready response with Markdown headings and bullet points. Never put multiple headings or bullets on the same line.";
 if(provider==="ollama"&&mode!=="niv"&&window.buildMUNUNContext){
