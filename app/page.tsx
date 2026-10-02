@@ -1,17 +1,47 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type Mode = "ollama" | "api"
+
+const DEFAULT_CONTEXT = {
+  country: "",
+  agenda1: "",
+  agenda2: "",
+}
 
 export default function Home() {
   const [mode, setMode] = useState<Mode>("ollama")
   const [prompt, setPrompt] = useState("Help me prepare a strong MUN strategy for my agenda.")
+  const [country, setCountry] = useState(DEFAULT_CONTEXT.country)
+  const [agenda1, setAgenda1] = useState(DEFAULT_CONTEXT.agenda1)
+  const [agenda2, setAgenda2] = useState(DEFAULT_CONTEXT.agenda2)
   const [answer, setAnswer] = useState("")
   const [provider, setProvider] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [keys, setKeys] = useState({ openai: "", groq: "", mistral: "", unlimitless: "" })
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("mun-ai-delegate-context")
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        setCountry(typeof parsed.country === "string" ? parsed.country : "")
+        setAgenda1(typeof parsed.agenda1 === "string" ? parsed.agenda1 : "")
+        setAgenda2(typeof parsed.agenda2 === "string" ? parsed.agenda2 : "")
+      }
+    } catch {
+      // Ignore malformed local preferences.
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(
+      "mun-ai-delegate-context",
+      JSON.stringify({ country, agenda1, agenda2 }),
+    )
+  }, [country, agenda1, agenda2])
 
   async function run() {
     setLoading(true); setError(""); setAnswer("")
@@ -22,6 +52,7 @@ export default function Home() {
         body: JSON.stringify({
           prompt,
           mode,
+          delegateContext: { country, agendas: [agenda1, agenda2].filter(Boolean) },
           apiKeys: mode === "api" ? keys : undefined,
         })
       })
@@ -38,6 +69,36 @@ export default function Home() {
     <section className="card">
       <div className="badge">MUN AI</div>
       <h1>Delegate Intelligence</h1>
+      <p>Your delegate profile stays active for every AI request. Set your country and agenda(s) once; they are saved locally in this browser.</p>
+
+      <h2>Delegate Context</h2>
+      <label>Country / Delegation</label>
+      <input
+        value={country}
+        onChange={e => setCountry(e.target.value)}
+        placeholder="e.g. India"
+        autoComplete="country-name"
+      />
+
+      <label>Agenda 1</label>
+      <input
+        value={agenda1}
+        onChange={e => setAgenda1(e.target.value)}
+        placeholder="Enter your first committee agenda"
+      />
+
+      <label>Agenda 2 <span className="optional">(optional)</span></label>
+      <input
+        value={agenda2}
+        onChange={e => setAgenda2(e.target.value)}
+        placeholder="Enter your second committee agenda"
+      />
+
+      <div className="context-status">
+        <strong>Always-on context:</strong>{" "}
+        {country || "Country not set"} • {agenda1 || "Agenda 1 not set"}
+        {agenda2 ? " • " + agenda2 : ""}
+      </div>
 
       <h2>AI Mode</h2>
       <div className="mode-grid">
