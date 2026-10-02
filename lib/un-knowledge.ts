@@ -710,6 +710,15 @@ Before accepting a draft, check authority, funding, clause conflicts, duplicatio
 - Negotiation-aware: anticipates objections and compromise.
 - Honest about uncertainty: flags current facts needing verification.
 - Concise enough for a delegate to use under time pressure.
+
+88. OFFICIAL UN PROCEDURAL ANCHORS
+- The UN General Assembly's official Rules of Procedure distinguish plenary and committee procedures; do not substitute generic parliamentary rules without qualification.
+- In GA plenary, Rule 67 permits debate to proceed when at least one third of Members are present; a majority is required for a decision.
+- In GA Main Committees, Rule 108 permits debate when at least one quarter of members are present; a majority is required for a decision.
+- GA Rule 82 gives each Member one vote. Rule 83 provides a two-thirds threshold for specified important questions; other questions are generally governed by the applicable majority rule.
+- Committee Rule 125 uses a majority of members present and voting; Rule 126 defines members present and voting as those casting an affirmative or negative vote, with abstentions not counted as voting.
+- These are actual UN rules and should not be presented as universal MUN conference rules; a conference may publish its own rules.
+- Verification anchors: UN General Assembly Rules of Procedure, including the official plenary and committee rule pages, should be consulted when an exact procedural answer matters.
 `.trim()
 
 const CORE_SECTIONS = new Set([1, 2, 3, 4, 6, 8, 9, 16, 18, 60])
