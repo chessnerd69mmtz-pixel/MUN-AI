@@ -51,7 +51,7 @@ export default function Home() {
   useEffect(() => {
     localStorage.setItem(
       "mun-ai-delegate-context",
-      JSON.stringify({ country, agenda1, agenda2 }),
+      JSON.stringify({ country, committee, agenda1, agenda2 }),
     )
   }, [country, agenda1, agenda2])
 
