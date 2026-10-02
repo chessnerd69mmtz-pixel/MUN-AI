@@ -282,7 +282,9 @@ export const MUN_COMMITTEE_INTELLIGENCE={
 } as const
 export const MUN_COUNTRY_INTELLIGENCE=[
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Afghanistan",
+    "admission": "19-11-1946",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -361,7 +363,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Albania",
+    "admission": "14-12-1955",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -440,7 +444,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Algeria",
+    "admission": "08-10-1962",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -519,7 +525,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Andorra",
+    "admission": "28-07-1993",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -598,7 +606,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Angola",
+    "admission": "01-12-1976",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -677,7 +687,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Antigua and Barbuda",
+    "admission": "11-11-1981",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -756,7 +768,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Argentina",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -835,7 +849,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Armenia",
+    "admission": "02-03-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -914,7 +930,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Australia",
+    "admission": "01-11-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -993,7 +1011,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Austria",
+    "admission": "14-12-1955",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1072,7 +1092,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Azerbaijan",
+    "admission": "02-03-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1151,6 +1173,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Bahamas",
+    "admission": "18-09-1973",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -1230,7 +1254,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Bahrain",
+    "admission": "21-09-1971",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1309,7 +1335,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Bangladesh",
+    "admission": "17-09-1974",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1388,7 +1416,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Barbados",
+    "admission": "09-12-1966",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1467,7 +1497,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Belarus",
+    "admission": "24-10-1945",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1546,7 +1578,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Belgium",
+    "admission": "27-12-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1625,7 +1659,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Belize",
+    "admission": "25-09-1981",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1704,7 +1740,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Benin",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1783,7 +1821,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Bhutan",
+    "admission": "21-09-1971",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1862,7 +1902,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Bolivia (Plurinational State of)",
+    "admission": "14-11-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -1941,7 +1983,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Bosnia and Herzegovina",
+    "admission": "22-05-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2020,7 +2064,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Botswana",
+    "admission": "17-10-1966",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2099,7 +2145,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Brazil",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2178,7 +2226,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Brunei Darussalam",
+    "admission": "21-09-1984",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2257,7 +2307,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Bulgaria",
+    "admission": "14-12-1955",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2336,7 +2388,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Burkina Faso",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2415,7 +2469,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Burundi",
+    "admission": "18-09-1962",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2494,7 +2550,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Cabo Verde",
+    "admission": "16-09-1975",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2573,7 +2631,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Cambodia",
+    "admission": "14-12-1955",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2652,7 +2712,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Cameroon",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2731,7 +2793,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Canada",
+    "admission": "09-11-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2810,7 +2874,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Central African Republic",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2889,7 +2955,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Chad",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -2968,7 +3036,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Chile",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3047,6 +3117,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "China (the People's Republic of)",
+    "admission": "24-10-1945",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -3126,7 +3198,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Colombia",
+    "admission": "05-11-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3205,7 +3279,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Comoros",
+    "admission": "12-11-1975",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3284,7 +3360,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Congo",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3363,7 +3441,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Costa Rica",
+    "admission": "02-11-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3442,6 +3522,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Côte D'Ivoire",
+    "admission": "20-09-1960",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -3521,7 +3603,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Croatia",
+    "admission": "22-05-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3600,7 +3684,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Cuba",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3679,7 +3765,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Cyprus",
+    "admission": "20-09-1960",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3758,7 +3846,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Czechia",
+    "admission": "19-01-1993",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -3837,6 +3927,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Democratic People's Republic of Korea",
+    "admission": "17-09-1991",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -3916,6 +4008,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Democratic Republic of the Congo",
+    "admission": "20-09-1960",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -3995,7 +4089,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Denmark",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4074,7 +4170,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Djibouti",
+    "admission": "20-09-1977",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4153,7 +4251,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Dominica",
+    "admission": "18-12-1978",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4232,7 +4332,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Dominican Republic",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4311,7 +4413,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Ecuador",
+    "admission": "21-12-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4390,7 +4494,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Egypt",
+    "admission": "24-10-1945",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4469,7 +4575,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "El Salvador",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4548,7 +4656,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Equatorial Guinea",
+    "admission": "12-11-1968",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4627,7 +4737,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Eritrea",
+    "admission": "28-05-1993",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4706,7 +4818,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Estonia",
+    "admission": "17-09-1991",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4785,7 +4899,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Eswatini",
+    "admission": "24-09-1968",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4864,7 +4980,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Ethiopia",
+    "admission": "13-11-1945",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -4943,7 +5061,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Fiji",
+    "admission": "13-10-1970",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5022,7 +5142,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Finland",
+    "admission": "14-12-1955",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5101,7 +5223,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "France",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5180,7 +5304,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Gabon",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5259,6 +5385,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Gambia (Republic of The)",
+    "admission": "21-09-1965",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -5338,7 +5466,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Georgia",
+    "admission": "31-07-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5417,7 +5547,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Germany",
+    "admission": "18-09-1973",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5496,7 +5628,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Ghana",
+    "admission": "08-03-1957",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5575,7 +5709,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Greece",
+    "admission": "25-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5654,7 +5790,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Grenada",
+    "admission": "17-09-1974",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5733,7 +5871,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Guatemala",
+    "admission": "21-11-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5812,7 +5952,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Guinea",
+    "admission": "12-12-1958",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -5891,6 +6033,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Guinea Bissau",
+    "admission": "17-09-1974",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -5970,7 +6114,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Guyana",
+    "admission": "20-09-1966",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6049,7 +6195,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Haiti",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6128,7 +6276,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Honduras",
+    "admission": "17-12-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6207,7 +6357,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Hungary",
+    "admission": "14-12-1955",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6286,7 +6438,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Iceland",
+    "admission": "19-11-1946",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6365,7 +6519,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "India",
+    "admission": "30-10-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6444,7 +6600,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Indonesia",
+    "admission": "28-09-1950",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6523,7 +6681,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Iran (Islamic Republic of)",
+    "admission": "24-10-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6602,7 +6762,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Iraq",
+    "admission": "21-12-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6681,7 +6843,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Ireland",
+    "admission": "14-12-1955",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6760,7 +6924,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Israel",
+    "admission": "11-05-1949",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6839,7 +7005,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Italy",
+    "admission": "14-12-1955",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6918,7 +7086,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Jamaica",
+    "admission": "18-09-1962",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -6997,7 +7167,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Japan",
+    "admission": "18-12-1956",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7076,7 +7248,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Jordan",
+    "admission": "14-12-1955",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7155,7 +7329,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Kazakhstan",
+    "admission": "02-03-1992",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7234,7 +7410,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Kenya",
+    "admission": "16-12-1963",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7313,7 +7491,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Kiribati",
+    "admission": "14-09-1999",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7392,7 +7572,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Kuwait",
+    "admission": "14-05-1963",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7471,7 +7653,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Kyrgyzstan",
+    "admission": "02-03-1992",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7550,6 +7734,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Lao People’s Democratic Republic",
+    "admission": "14-12-1955",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -7629,7 +7815,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Latvia",
+    "admission": "17-09-1991",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7708,7 +7896,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Lebanon",
+    "admission": "24-10-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7787,7 +7977,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Lesotho",
+    "admission": "17-10-1966",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7866,7 +8058,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Liberia",
+    "admission": "02-11-1945",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -7945,7 +8139,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Libya",
+    "admission": "14-12-1955",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8024,7 +8220,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Liechtenstein",
+    "admission": "18-09-1990",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8103,7 +8301,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Lithuania",
+    "admission": "17-09-1991",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8182,7 +8382,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Luxembourg",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8261,7 +8463,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Madagascar",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8340,7 +8544,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Malawi",
+    "admission": "01-12-1964",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8419,7 +8625,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Malaysia",
+    "admission": "17-09-1957",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8498,7 +8706,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Maldives",
+    "admission": "21-09-1965",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8577,7 +8787,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Mali",
+    "admission": "28-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8656,7 +8868,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Malta",
+    "admission": "01-12-1964",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8735,7 +8949,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Marshall Islands",
+    "admission": "17-09-1991",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8814,7 +9030,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Mauritania",
+    "admission": "27-10-1961",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8893,7 +9111,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Mauritius",
+    "admission": "24-04-1968",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -8972,7 +9192,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Mexico",
+    "admission": "07-11-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9051,7 +9273,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Micronesia (Federated States of)",
+    "admission": "17-09-1991",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9130,7 +9354,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Monaco",
+    "admission": "28-05-1993",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9209,7 +9435,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Mongolia",
+    "admission": "27-10-1961",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9288,7 +9516,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Montenegro",
+    "admission": "28-06-2006",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9367,7 +9597,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Morocco",
+    "admission": "12-11-1956",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9446,7 +9678,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Mozambique",
+    "admission": "16-09-1975",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9525,7 +9759,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Myanmar",
+    "admission": "19-04-1948",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9604,7 +9840,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Namibia",
+    "admission": "23-04-1990",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9683,7 +9921,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Naoero",
+    "admission": "14-09-1999",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9762,7 +10002,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Nepal",
+    "admission": "14-12-1955",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9841,6 +10083,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Netherlands (Kingdom of the)",
+    "admission": "10-12-1945",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -9920,7 +10164,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "New Zealand",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -9999,7 +10245,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Nicaragua",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10078,7 +10326,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Niger",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10157,7 +10407,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Nigeria",
+    "admission": "07-10-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10236,7 +10488,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "North Macedonia",
+    "admission": "08-04-1993",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10315,7 +10569,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Norway",
+    "admission": "27-11-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10394,7 +10650,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Oman",
+    "admission": "07-10-1971",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10473,7 +10731,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Pakistan",
+    "admission": "30-09-1947",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10552,7 +10812,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Palau",
+    "admission": "15-12-1994",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10631,7 +10893,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Panama",
+    "admission": "13-11-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10710,7 +10974,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Papua New Guinea",
+    "admission": "10-10-1975",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10789,7 +11055,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Paraguay",
+    "admission": "24-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10868,7 +11136,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Peru",
+    "admission": "31-10-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -10947,7 +11217,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Philippines",
+    "admission": "24-10-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11026,7 +11298,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Poland",
+    "admission": "24-10-1945",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11105,7 +11379,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Portugal",
+    "admission": "14-12-1955",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11184,7 +11460,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Qatar",
+    "admission": "21-09-1971",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11263,7 +11541,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Republic of Korea",
+    "admission": "17-09-1991",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11342,7 +11622,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Republic of Moldova",
+    "admission": "02-03-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11421,7 +11703,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Romania",
+    "admission": "14-12-1955",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11500,7 +11784,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Russian Federation",
+    "admission": "24-10-1945",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11579,7 +11865,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Rwanda",
+    "admission": "18-09-1962",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11658,7 +11946,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Saint Kitts and Nevis",
+    "admission": "23-09-1983",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11737,7 +12027,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Saint Lucia",
+    "admission": "18-09-1979",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11816,7 +12108,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Saint Vincent and the Grenadines",
+    "admission": "16-09-1980",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11895,7 +12189,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Samoa",
+    "admission": "15-12-1976",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -11974,7 +12270,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "San Marino",
+    "admission": "02-03-1992",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12053,7 +12351,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Sao Tome and Principe",
+    "admission": "16-09-1975",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12132,7 +12432,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Saudi Arabia",
+    "admission": "24-10-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12211,7 +12513,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Senegal",
+    "admission": "28-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12290,7 +12594,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Serbia",
+    "admission": "01-11-2000",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12369,7 +12675,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Seychelles",
+    "admission": "21-09-1976",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12448,7 +12756,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Sierra Leone",
+    "admission": "27-09-1961",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12527,7 +12837,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Singapore",
+    "admission": "21-09-1965",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12606,7 +12918,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Slovakia",
+    "admission": "19-01-1993",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12685,7 +12999,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Slovenia",
+    "admission": "22-05-1992",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12764,7 +13080,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Solomon Islands",
+    "admission": "19-09-1978",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12843,7 +13161,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Somalia",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -12922,7 +13242,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "South Africa",
+    "admission": "07-11-1945",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13001,7 +13323,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "South Sudan",
+    "admission": "14-07-2011",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13080,7 +13404,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Spain",
+    "admission": "14-12-1955",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13159,7 +13485,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Sri Lanka",
+    "admission": "14-12-1955",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13238,7 +13566,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Sudan",
+    "admission": "12-11-1956",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13317,7 +13647,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Suriname",
+    "admission": "04-12-1975",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13396,7 +13728,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Sweden",
+    "admission": "19-11-1946",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13475,7 +13809,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Switzerland",
+    "admission": "10-09-2002",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13554,7 +13890,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Syrian Arab Republic",
+    "admission": "24-10-1945",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13633,7 +13971,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Tajikistan",
+    "admission": "02-03-1992",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13712,7 +14052,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Thailand",
+    "admission": "15-12-1946",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13791,7 +14133,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Timor-Leste",
+    "admission": "27-09-2002",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13870,7 +14214,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Togo",
+    "admission": "20-09-1960",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -13949,7 +14295,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Tonga",
+    "admission": "14-09-1999",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14028,7 +14376,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Trinidad and Tobago",
+    "admission": "18-09-1962",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14107,7 +14457,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Tunisia",
+    "admission": "12-11-1956",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14186,7 +14538,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Türkiye",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14265,7 +14619,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Turkmenistan",
+    "admission": "02-03-1992",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14344,7 +14700,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Tuvalu",
+    "admission": "05-09-2000",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14423,7 +14781,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Uganda",
+    "admission": "25-10-1962",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14502,7 +14862,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Ukraine",
+    "admission": "24-10-1945",
+    "regionalGroup": "Eastern European States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14581,7 +14943,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "United Arab Emirates",
+    "admission": "09-12-1971",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14660,7 +15024,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14739,7 +15105,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "United Republic of Tanzania",
+    "admission": "14-12-1961",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14818,7 +15186,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "United States of America",
+    "admission": "24-10-1945",
+    "regionalGroup": "Western European and other States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14897,7 +15267,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Uruguay",
+    "admission": "18-12-1945",
+    "regionalGroup": "Latin American and Caribbean States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -14976,7 +15348,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Uzbekistan",
+    "admission": "02-03-1992",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -15055,7 +15429,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Vanuatu",
+    "admission": "15-09-1981",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -15134,6 +15510,8 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
+    "name": "Venezuela, Bolivarian Republic of",
+    "admission": "15-11-1945",
     "regionalGroup": "Unclassified in regional table",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
@@ -15213,7 +15591,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Viet Nam",
+    "admission": "20-09-1977",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -15292,7 +15672,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Yemen",
+    "admission": "30-09-1947",
+    "regionalGroup": "Asia-Pacific States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -15371,7 +15753,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Zambia",
+    "admission": "01-12-1964",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
@@ -15450,7 +15834,9 @@ export const MUN_COUNTRY_INTELLIGENCE=[
     }
   },
   {
-    "regionalGroup": "Unclassified in regional table",
+    "name": "Zimbabwe",
+    "admission": "25-08-1980",
+    "regionalGroup": "African States",
     "officialSources": {
       "memberState": "https://www.un.org/en/about-us/member-states",
       "memberRecord": "https://www.un.org/en/library/unms",
