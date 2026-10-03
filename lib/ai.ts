@@ -1,8 +1,9 @@
 import OpenAI from "openai"
 
-type Provider = "ollama" | "groq" | "mistral" | "unlimitless"
+type Provider = "ollama" | "openai" | "groq" | "mistral" | "unlimitless"
 
 export type RuntimeApiKeys = {
+  openai?: string
   groq?: string
   mistral?: string
   unlimitless?: string
@@ -14,6 +15,16 @@ function clientFor(provider: Provider, keys?: RuntimeApiKeys) {
       apiKey: "ollama",
       baseURL: process.env.OLLAMA_BASE_URL || "http://127.0.0.1:11434/v1",
     })
+  }
+  if (provider === "openai") {
+    const key = keys?.openai || process.env.OPENAI_API_KEY
+    if (!key) throw new Error("OpenAI API key is not configured.")
+    return new OpenAI({ apiKey: key, baseURL: "https://api.openai.com/v1" })
+  }
+  if (provider === "openai") {
+    const model = process.env.OPENAI_MODEL || "gpt-4o-mini"
+    const completion = await clientFor("openai", keys).chat.completions.create({ ...options, model } as any)
+    return { completion, provider }
   }
   if (provider === "groq") {
     const key = keys?.groq || process.env.GROQ_API_KEY
@@ -39,6 +50,7 @@ function clientFor(provider: Provider, keys?: RuntimeApiKeys) {
 export function providerName(p: Provider) {
   return p === "ollama"
     ? "Ollama (local)"
+    : p === "openai" ? "OpenAI"
     : p === "groq"
         ? "Groq"
         : p === "mistral"
@@ -46,7 +58,7 @@ export function providerName(p: Provider) {
           : "Unlimitless"
 }
 
-const cloudProviders: Provider[] = ["groq", "mistral", "unlimitless"]
+const cloudProviders: Provider[] = ["openai", "groq", "mistral", "unlimitless"]
 
 async function runProvider(provider: Provider, options: any, keys?: RuntimeApiKeys, opts?: { includeGroqCompound?: boolean }) {
   if (provider === "ollama") {
@@ -103,6 +115,7 @@ export async function chatWithFallback(
 
   const keys = opts?.apiKeys || {}
   const configured = cloudProviders.filter(p =>
+    p === "openai" ? !!keys.openai || !!process.env.OPENAI_API_KEY :
     p === "groq" ? !!keys.groq || !!process.env.GROQ_API_KEY :
     p === "mistral" ? !!keys.mistral || !!process.env.MISTRAL_API_KEY :
     !!keys.unlimitless || !!process.env.UNLIMITLESS_API_KEY
