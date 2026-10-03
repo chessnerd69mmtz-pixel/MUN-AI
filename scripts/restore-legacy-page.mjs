@@ -1,0 +1,2 @@
+import fs from "node:fs";import path from "node:path";import zlib from "node:zlib";
+const root=process.cwd();const dir=path.join(root,"legacy");const encoded=Array.from({length:9},(_,i)=>fs.readFileSync(path.join(dir,`part${i+1}.b64`),"utf8").trim()).join("");const source=zlib.gunzipSync(Buffer.from(encoded,"base64")).toString("utf8");fs.mkdirSync(path.join(root,"app"),{recursive:true});fs.writeFileSync(path.join(root,"app","page.tsx"),source);console.log(`Restored legacy MUN AI page (${source.length} bytes).`);
