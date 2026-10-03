@@ -21,11 +21,6 @@ function clientFor(provider: Provider, keys?: RuntimeApiKeys) {
     if (!key) throw new Error("OpenAI API key is not configured.")
     return new OpenAI({ apiKey: key, baseURL: "https://api.openai.com/v1" })
   }
-  if (provider === "openai") {
-    const model = process.env.OPENAI_MODEL || "gpt-4o-mini"
-    const completion = await clientFor("openai", keys).chat.completions.create({ ...options, model } as any)
-    return { completion, provider }
-  }
   if (provider === "groq") {
     const key = keys?.groq || process.env.GROQ_API_KEY
     if (!key) throw new Error("Groq API key is not configured.")
@@ -66,6 +61,11 @@ async function runProvider(provider: Provider, options: any, keys?: RuntimeApiKe
     const completion = await clientFor("ollama", keys).chat.completions.create({ ...options, model } as any)
     return { completion, provider: "ollama" as const }
   }
+  if (provider === "openai") {
+    const model = process.env.OPENAI_MODEL || "gpt-4o-mini"
+    const completion = await clientFor("openai", keys).chat.completions.create({ ...options, model } as any)
+    return { completion, provider }
+  }
   if (provider === "groq") {
     const model = options.model === "groq/compound" && opts?.includeGroqCompound !== false
       ? "groq/compound"
@@ -88,7 +88,7 @@ async function runProvider(provider: Provider, options: any, keys?: RuntimeApiKe
  * Uses Ollama only by default.
  *
  * In API mode, the supported user-supplied keys form an explicit fallback pool:
- * Groq -> Mistral -> Unlimitless. A later provider is only tried
+ * OpenAI -> Groq -> Mistral -> Unlimitless. A later provider is only tried
  * when an earlier configured provider fails, so keys are not all consumed
  * for every successful request.
  */
