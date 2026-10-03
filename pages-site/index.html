@@ -170,7 +170,11 @@ compactUN=String(window.buildMUNUNContext(system+"\n"+baseUser)).slice(0,10000);
 }
 var niv=window.buildNivPrompt?window.buildNivPrompt(prompt,delegateContext,compactUN+"\n\nMUN INTELLIGENCE:\n"+intelligence,history):null;
 if(mode==="niv"&&niv)system=niv.system;
-var user=baseUser+"\n\nReturn a useful MUN-ready response. Keep it under about 900 words unless the user explicitly asks for more.";
+if(mode==="niv"&&window.buildNivTacticalContext){
+  var tactical=window.buildNivTacticalContext(state.profile.country||"",state.profile.committee||"",state.profile.agenda1||"",state.profile.agenda2||"",prompt,niv&&niv.task||"general");
+  system+="\n\nLOCAL TACTICAL RETRIEVAL — USE ONLY IF RELEVANT:\n"+String(tactical).slice(0,6500);
+}
+var user=baseUser+"\n\nRESPONSE CONTRACT:\n1. Answer the exact question first.\n2. Use only context that changes the answer.\n3. If this is a rapid tactical question, do not write a general briefing.\n4. Give concrete wording/actions when useful.\n5. Distinguish verified facts from strategic hypotheses.\n6. If a current country position is unknown locally, say so rather than inventing it.\n\nKeep the response under about "+(mode==="niv"&&niv&&niv.fast?"500":"900")+" words unless the user explicitly asks for more.";
 if(mode!=="niv"&&provider==="ollama"&&window.buildMUNUNContext){
 user+="\n\nLOCAL RESEARCH GROUNDING:\n"+String(window.buildMUNUNContext(system+"\n"+user)).slice(0,22000);
 }
