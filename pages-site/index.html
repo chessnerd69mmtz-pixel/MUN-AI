@@ -182,6 +182,7 @@ history=state.nivHistory.slice(-6).map(function(m){return String(m.role||"user")
 var system="You are Niv AI, a practical Model UN tactical assistant. "+delegateContext+". Keep both agendas distinct when both are selected. Answer the user's request directly, use concise Markdown, and never invent facts or citations.";
 var intelligence=window.buildNivIntelligenceContext?window.buildNivIntelligenceContext(state.profile.country||"",state.profile.committee||""):"";
 intelligence=String(intelligence||"").slice(0,8000);
+if(intelligence)system+="\n\nCOUNTRY-SPECIFIC INTELLIGENCE:\n"+intelligence+"\nUse it to keep recommendations country-specific; do not turn dossier research categories into invented positions.";
 // First classify the request, then decide what reference material is actually worth
 // sending. Tactical questions should not pay the latency cost of the full knowledge base.
 var quickNivText=String(prompt||"").toLowerCase();
