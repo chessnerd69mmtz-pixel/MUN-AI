@@ -22,7 +22,7 @@ export default function Home() {
   const [provider, setProvider] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [keys, setKeys] = useState({ groq: "", mistral: "", unlimitless: "" })
+  const [keys, setKeys] = useState({ openai: "", groq: "", mistral: "", unlimitless: "" })
   const [nivHistory, setNivHistory] = useState<NivMessage[]>([])
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export default function Home() {
         </button>
         <button className={mode === "api" ? "selected" : ""} onClick={() => setMode("api")}>
           API Keys
-          <small>Groq • Mistral • Unlimitless</small>
+          <small>OpenAI • Groq • Mistral • Unlimitless</small>
         </button>
       </div>
 
@@ -146,6 +146,7 @@ export default function Home() {
         <h2>API Keys</h2>
         <p>Keys are sent to your local Next.js server for the request and are not saved by this page.</p>
         {([
+          ["openai", "OpenAI API Key"],
           ["groq", "Groq API Key"],
           ["mistral", "Mistral API Key"],
           ["unlimitless", "Unlimitless API Key"],
@@ -161,7 +162,7 @@ export default function Home() {
             />
           </label>
         ))}
-        <p className="note">API routing tries configured providers in this order: Groq → Mistral → Unlimitless. Later keys are used only if an earlier configured provider fails.</p>
+        <p className="note">API routing tries configured providers in this order: OpenAI → Groq → Mistral → Unlimitless. Later keys are used only if an earlier configured provider fails.</p>
       </div>}
 
       <label>What do you need help with?</label>
