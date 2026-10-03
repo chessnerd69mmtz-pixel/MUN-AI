@@ -49,6 +49,7 @@ export async function POST(request: Request) {
 
     const rawKeys = body?.apiKeys && typeof body.apiKeys === "object" ? body.apiKeys : {}
     const apiKeys: RuntimeApiKeys = {
+      openai: typeof rawKeys.openai === "string" ? rawKeys.openai.trim() : "",
       groq: typeof rawKeys.groq === "string" ? rawKeys.groq.trim() : "",
       mistral: typeof rawKeys.mistral === "string" ? rawKeys.mistral.trim() : "",
       unlimitless: typeof rawKeys.unlimitless === "string" ? rawKeys.unlimitless.trim() : "",
