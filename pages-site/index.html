@@ -142,7 +142,7 @@ var out=document.getElementById("out");
 var prompt=(document.getElementById("prompt").value||"").trim();
 if(!prompt){out.innerHTML="<div class='error-box'>Enter a request first.</div>";return}
 state[mode+"Prompt"]=prompt;save();
-out.innerHTML="<div class='response-shell'><div class='loading'><span class='spinner'></span><span id='nivLoadingText'>Preparing Niv AI context for "+esc(agendaLabel(state.focus).toLowerCase())+"…</span></div></div>";
+out.innerHTML="<div class='response-shell'><div class='loading'><span class='spinner'></span><span id='nivLoadingText'>Analyzing your request and selecting only relevant MUN context…</span></div></div>";
 var preferred=ollamaOnly?"ollama":(state.keys.provider||"auto");if(preferred==="openai")preferred="auto";
 var provider=preferred;
 if(provider==="auto")provider=state.keys.groq?"groq":state.keys.mistral?"mistral":"";
@@ -157,15 +157,16 @@ history=state.nivHistory.slice(-6).map(function(m){return String(m.role||"user")
 }
 var system="You are Niv AI, a practical Model UN tactical assistant. "+delegateContext+". Keep both agendas distinct when both are selected. Answer the user's request directly, use concise Markdown, and never invent facts or citations.";
 var intelligence=window.buildNivIntelligenceContext?window.buildNivIntelligenceContext(state.profile.country||"",state.profile.committee||""):"";
-var compactUN="";
-if(mode==="niv"&&window.buildMUNUNContext){
-compactUN=window.buildMUNUNContext(system+"\n"+baseUser);
-}
-if(mode==="niv"){
-// Niv does not need the entire knowledge base on every request. Large duplicated
-// context was causing llama3.2 to spend excessive time in prompt processing.
-compactUN=String(compactUN||"").slice(0,14000);
 intelligence=String(intelligence||"").slice(0,8000);
+// First classify the request, then decide what reference material is actually worth
+// sending. Tactical questions should not pay the latency cost of the full knowledge base.
+var quickNivText=String(prompt||"").toLowerCase();
+var fastAlliance=/(which countries|what countries|block with|form a block|bloc|coalition|ally|allies|alliance|partners|co-sponsor|sponsor)/.test(quickNivText);
+var fastDirect=/(what should i do|next move|next step|what do i say|how do i respond|should i)/.test(quickNivText);
+var needsUN=!fastAlliance&&!fastDirect || /(procedure|point of order|poo|motion|resolution|treaty|voting record|official position|latest|current|research|citation)/.test(quickNivText);
+var compactUN="";
+if(mode==="niv"&&needsUN&&window.buildMUNUNContext){
+compactUN=String(window.buildMUNUNContext(system+"\n"+baseUser)).slice(0,10000);
 }
 var niv=window.buildNivPrompt?window.buildNivPrompt(prompt,delegateContext,compactUN+"\n\nMUN INTELLIGENCE:\n"+intelligence,history):null;
 if(mode==="niv"&&niv)system=niv.system;
