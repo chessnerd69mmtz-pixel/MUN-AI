@@ -143,7 +143,7 @@ var prompt=(document.getElementById("prompt").value||"").trim();
 if(!prompt){out.innerHTML="<div class='error-box'>Enter a request first.</div>";return}
 state[mode+"Prompt"]=prompt;save();
 out.innerHTML="<div class='response-shell'><div class='loading'><span class='spinner'></span><span id='nivLoadingText'>Preparing Niv AI context for "+esc(agendaLabel(state.focus).toLowerCase())+"…</span></div></div>";
-var preferred=mode==="niv"?"ollama":(ollamaOnly?"ollama":(state.keys.provider||"auto"));if(preferred==="openai")preferred="auto";
+var preferred=ollamaOnly?"ollama":(state.keys.provider||"auto");if(preferred==="openai")preferred="auto";
 var provider=preferred;
 if(provider==="auto")provider=state.keys.groq?"groq":state.keys.mistral?"mistral":"";
 var key=provider==="groq"?state.keys.groq:provider==="mistral"?state.keys.mistral:"";
