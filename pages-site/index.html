@@ -142,7 +142,7 @@ if(tab==="settings"){document.getElementById("saveKeys").onclick=function(){stat
 if(["research","researchmore","strategy","speech","resolution","niv"].indexOf(tab)>=0){
 document.getElementById("runAI").onclick=function(){runAI(tab==="researchmore"?"research":tab)};
 var rb=document.getElementById("researchMoreBtn");if(rb)rb.onclick=function(){runResearchMore(tab==="researchmore"?"research":tab)};
-document.getElementById("saveOutput").onclick=function(){var text=state[tab]||"";if(!text)return;state.docs.unshift({title:title()+" · "+agendaLabel(state.focus),content:text,createdAt:new Date().toISOString()});save();tab="documents";render()}
+document.getElementById("saveOutput").onclick=function(){var saveMode=tab==="researchmore"?"research":tab;var text=state[saveMode]||"";if(!text)return;state.docs.unshift({title:title()+" · "+agendaLabel(state.focus),content:text,createdAt:new Date().toISOString()});save();tab="documents";render()}
 }
 if(tab==="documents"){document.getElementById("saveDoc").onclick=function(){var c=document.getElementById("docContent").value.trim();if(!c)return;state.docs.unshift({title:document.getElementById("docTitle").value.trim()||"Untitled document",content:c,createdAt:new Date().toISOString()});save();render()};document.querySelectorAll("[data-copy]").forEach(function(b){b.onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(state.docs[Number(b.getAttribute("data-copy"))].content)}});document.querySelectorAll("[data-del]").forEach(function(b){b.onclick=function(){state.docs.splice(Number(b.getAttribute("data-del")),1);save();render()}})}
 }
