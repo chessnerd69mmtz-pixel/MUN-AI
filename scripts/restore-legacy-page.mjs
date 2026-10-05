@@ -1,2 +1,21 @@
-import fs from "node:fs";import path from "node:path";import zlib from "node:zlib";
-const root=process.cwd();const dir=path.join(root,"legacy");const encoded=Array.from({length:9},(_,i)=>fs.readFileSync(path.join(dir,`part${i+1}.b64`),"utf8").trim()).join("");const source=zlib.gunzipSync(Buffer.from(encoded,"base64")).toString("utf8");fs.mkdirSync(path.join(root,"app"),{recursive:true});fs.writeFileSync(path.join(root,"app","page.tsx"),source);console.log(`Restored legacy MUN AI page (${source.length} bytes).`);
+import fs from "node:fs";
+import path from "node:path";
+
+// The historical "legacy/part*.b64" archive is a ZIP split into base64 chunks.
+// Older startup logic incorrectly passed those ZIP bytes to gunzip, which made
+// every npm dev/build/start command fail before Next.js could render.
+//
+// The complete legacy UI is now restored under public/munai/ and is loaded by
+// app/page.tsx. Keep this script as a safe compatibility check for old launchers.
+const root = process.cwd();
+const page = path.join(root, "app", "page.tsx");
+const legacyUi = path.join(root, "public", "munai", "index.html");
+
+if (!fs.existsSync(page)) {
+  throw new Error("MUN AI startup check failed: app/page.tsx is missing.");
+}
+if (!fs.existsSync(legacyUi)) {
+  throw new Error("MUN AI startup check failed: public/munai/index.html is missing.");
+}
+
+console.log("MUN AI UI assets verified; skipping legacy archive reconstruction.");
