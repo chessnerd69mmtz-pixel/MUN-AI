@@ -2,181 +2,39 @@
 
 import { useEffect, useState } from "react"
 
-type Mode = "ollama" | "api"
-type NivMessage = { role: "user" | "assistant"; content: string }
-
-const DEFAULT_CONTEXT = {
-  country: "",
-  agenda1: "",
-  agenda2: "",
-}
-
 export default function Home() {
-  const [mode, setMode] = useState<Mode>("ollama")
-  const [prompt, setPrompt] = useState("Help me prepare a strong MUN strategy for my agenda.")
-  const [country, setCountry] = useState(DEFAULT_CONTEXT.country)
-  const [committee, setCommittee] = useState("")
-  const [agenda1, setAgenda1] = useState(DEFAULT_CONTEXT.agenda1)
-  const [agenda2, setAgenda2] = useState(DEFAULT_CONTEXT.agenda2)
-  const [answer, setAnswer] = useState("")
-  const [provider, setProvider] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [keys, setKeys] = useState({ openai: "", groq: "", mistral: "", unlimitless: "" })
-  const [nivHistory, setNivHistory] = useState<NivMessage[]>([])
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    try {
-      const savedHistory = localStorage.getItem("mun-ai-niv-history")
-      if (savedHistory) {
-        const parsedHistory = JSON.parse(savedHistory)
-        if (Array.isArray(parsedHistory)) setNivHistory(parsedHistory.filter((item) => item && (item.role === "user" || item.role === "assistant") && typeof item.content === "string").slice(-12))
-      }
-      const saved = localStorage.getItem("mun-ai-delegate-context")
-      if (saved) {
-        const parsed = JSON.parse(saved)
-        setCountry(typeof parsed.country === "string" ? parsed.country : "")
-        setCommittee(typeof parsed.committee === "string" ? parsed.committee : "")
-        setAgenda1(typeof parsed.agenda1 === "string" ? parsed.agenda1 : "")
-        setAgenda2(typeof parsed.agenda2 === "string" ? parsed.agenda2 : "")
-      }
-    } catch {
-      // Ignore malformed local preferences.
-    }
+    const timer = window.setTimeout(() => setReady(true), 0)
+    return () => window.clearTimeout(timer)
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem("mun-ai-niv-history", JSON.stringify(nivHistory.slice(-12)))
-  }, [nivHistory])
-
-  useEffect(() => {
-    localStorage.setItem(
-      "mun-ai-delegate-context",
-      JSON.stringify({ country, committee, agenda1, agenda2 }),
-    )
-  }, [country, committee, agenda1, agenda2])
-
-  async function run() {
-    setLoading(true); setError(""); setAnswer("")
-    try {
-      const r = await fetch("/api/chat", {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({
-          prompt,
-          mode,
-          delegateContext: { country, committee, agendas: [agenda1, agenda2].filter(Boolean) },
-          conversationHistory: mode === "ollama" ? nivHistory.slice(-8) : undefined,
-          apiKeys: mode === "api" ? keys : undefined,
-        })
-      })
-      const data = await r.json()
-      if (!r.ok) throw new Error(data?.error || "AI request failed")
-      const nextAnswer = data?.answer || "No response returned."
-      setAnswer(nextAnswer)
-      setProvider(data?.provider || "")
-      setNivHistory(history => {
-        const nextHistory: NivMessage[] = [
-          ...history,
-          { role: "user", content: prompt },
-          { role: "assistant", content: nextAnswer },
-        ]
-        return nextHistory.slice(-12)
-      })
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Request failed.")
-    } finally { setLoading(false) }
-  }
-
-  return <main className="shell">
-    <section className="card">
-      <div className="badge">MUN AI</div>
-      <h1>Delegate Intelligence</h1>
-      <p>Your delegate profile stays active for every AI request. Set your country and agenda(s) once; they are saved locally in this browser.</p>
-
-      <h2>Delegate Context</h2>
-      <label>Country / Delegation</label>
-      <input
-        value={country}
-        onChange={e => setCountry(e.target.value)}
-        placeholder="e.g. India"
-        autoComplete="country-name"
+  return (
+    <main style={{ minHeight: "100vh", margin: 0, padding: 0, background: "#f4f7fb" }}>
+      {!ready && (
+        <div style={{
+          minHeight: "100vh",
+          display: "grid",
+          placeItems: "center",
+          fontFamily: "system-ui, sans-serif",
+          color: "#667085"
+        }}>
+          Loading MUN AI…
+        </div>
+      )}
+      <iframe
+        title="MUN AI"
+        src="/munai/index.html"
+        style={{
+          display: ready ? "block" : "none",
+          width: "100%",
+          height: "100vh",
+          minHeight: "100vh",
+          border: 0,
+          background: "#f4f7fb"
+        }}
       />
-
-      <label>Committee</label>
-      <input
-        value={committee}
-        onChange={e => setCommittee(e.target.value)}
-        placeholder="e.g. DISEC / Security Council / SOCHUM"
-      />
-
-      <label>Agenda 1</label>
-      <input
-        value={agenda1}
-        onChange={e => setAgenda1(e.target.value)}
-        placeholder="Enter your first committee agenda"
-      />
-
-      <label>Agenda 2 <span className="optional">(optional)</span></label>
-      <input
-        value={agenda2}
-        onChange={e => setAgenda2(e.target.value)}
-        placeholder="Enter your second committee agenda"
-      />
-
-      <div className="context-status">
-        <strong>Always-on context:</strong>{" "}
-        {country || "Country not set"} • {agenda1 || "Agenda 1 not set"}
-        {agenda2 ? " • " + agenda2 : ""}
-      </div>
-
-      <h2>AI Mode</h2>
-      <div className="mode-grid">
-        <button className={mode === "ollama" ? "selected" : ""} onClick={() => setMode("ollama")}>
-          Ollama Only
-          <small>Private • Local • No API usage</small>
-        </button>
-        <button className={mode === "api" ? "selected" : ""} onClick={() => setMode("api")}>
-          API Keys
-          <small>OpenAI • Groq • Mistral • Unlimitless</small>
-        </button>
-      </div>
-
-      {mode === "api" && <div className="keys-panel">
-        <h2>API Keys</h2>
-        <p>Keys are sent to your local Next.js server for the request and are not saved by this page.</p>
-        {([
-          ["openai", "OpenAI API Key"],
-          ["groq", "Groq API Key"],
-          ["mistral", "Mistral API Key"],
-          ["unlimitless", "Unlimitless API Key"],
-        ] as const).map(([name, label]) => (
-          <label key={name}>
-            {label}
-            <input
-              type="password"
-              value={keys[name]}
-              onChange={e => setKeys(k => ({...k, [name]: e.target.value}))}
-              placeholder={"Enter " + label}
-              autoComplete="off"
-            />
-          </label>
-        ))}
-        <p className="note">API routing tries configured providers in this order: OpenAI → Groq → Mistral → Unlimitless. Later keys are used only if an earlier configured provider fails.</p>
-      </div>}
-
-      <label>What do you need help with?</label>
-      <textarea value={prompt} onChange={e=>setPrompt(e.target.value)} />
-      <button onClick={run} disabled={loading}>
-        {loading ? (mode === "ollama" ? "Thinking locally…" : "Thinking with API…") : "Ask MUN AI"}
-      </button>
-
-      {error && <div className="error">{error}</div>}
-      {answer && <article><h2>Response</h2><div className="note">Provider used: {provider}{mode === "ollama" ? " • Niv keeps the last few turns locally for continuity" : ""}</div><pre>{answer}</pre>{mode === "ollama" && nivHistory.length > 0 && <button className="secondary" onClick={() => setNivHistory([])}>Clear local Niv conversation</button>}</article>}
-
-      {mode === "ollama"
-        ? <p className="note">Local model: llama3.2 via Ollama. Cloud APIs are not used in this mode.</p>
-        : <p className="note">API mode is opt-in. Your keys are used only for the current request and are not written into the repository.</p>}
-    </section>
-  </main>
+    </main>
+  )
 }
