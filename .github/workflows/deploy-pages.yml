@@ -24,15 +24,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Prepare complete static MUN AI site
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          cp -R public/munai/. _site/
+          touch _site/.nojekyll
+          test -s _site/index.html
+          test -s _site/un-knowledge.js
+          test -s _site/mun-intelligence.js
+          test -s _site/niv-engine.js
+          echo "GitHub Pages payload:"
+          find _site -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
 
-      - name: Upload Pages artifact
+      - name: Upload complete MUN AI artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./pages-site
+          path: ./_site
 
       - name: Deploy
         id: deployment
