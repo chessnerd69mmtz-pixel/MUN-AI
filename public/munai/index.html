@@ -172,6 +172,7 @@ if(mode==="niv"&&state.nivHistory.length){
 history=state.nivHistory.slice(-6).map(function(m){return String(m.role||"user").toUpperCase()+": "+String(m.content||"").slice(0,1800)}).join("\n\n");
 }
 var system="You are Niv AI, a practical Model UN tactical assistant. "+delegateContext+". Keep both agendas distinct when both are selected. Answer the user's request directly, use concise Markdown, and never invent facts or citations."+(mode==="cop31"?" You are operating in COP31 Intelligence Mode: identify the exact UNFCCC track, distinguish verified current facts from inference, and prioritize official UNFCCC and national sources.":"");
+if(mode==="cop31")system+="\n\nCOP31 CURRENT INTELLIGENCE:\n"+intelligence;
 var intelligence=window.buildNivIntelligenceContext?window.buildNivIntelligenceContext(state.profile.country||"",state.profile.committee||""):"";
 if(mode==="cop31"&&window.buildCOP31Context){intelligence+="\n\n"+window.buildCOP31Context(state.profile.country||"",state.cop31.track,state.cop31.issue,prompt)}
 intelligence=String(intelligence||"").slice(0,8000);
