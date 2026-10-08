@@ -52,6 +52,27 @@ Vireonix does not require a key and is used only as the final general-generation
 
 The application keeps MUN workspace data in browser localStorage. Do not clear the site's storage if you want to retain local MUN workspaces and saved documents.
 
+## COP31 mode — 2026 Antalya preparation
+
+MUN AI includes a dedicated COP31 Intelligence Mode for the 2026 Antalya process. It keeps the exact UNFCCC track (COP31, CMA8, CMP21, SBSTA65 or SBI65), climate issue, assigned country and negotiation objective in context.
+
+COP31 mode covers:
+- NDCs and mitigation ambition
+- climate finance and access
+- adaptation and Global Goal on Adaptation
+- loss and damage
+- Paris Agreement Article 6
+- Enhanced Transparency Framework / BTRs
+- technology transfer and capacity-building
+- just transition
+- gender and climate
+- implementation and Action Agenda questions
+- immediate negotiating moves, likely allies/opposition, compromise language, fallback positions and red-line tests
+
+The COP31 layer is source-first. It links the official UNFCCC COP31 hub, COP31 documents, provisional agenda, CMA8 session, COP31 presidency process, participant information and UNFCCC document database. It explicitly instructs Niv not to invent current country positions, NDC figures, finance pledges, red lines, alliances or procedural thresholds.
+
+Current conference facts in the local source pack are dated 8 October 2026 and should be rechecked against the linked UNFCCC sources before treating a changing fact as current.
+
 ## Features
 
 ### Research Intelligence
