@@ -34,7 +34,9 @@
     {id:"implementation",name:"Implementation / Action Agenda",tags:["implementation","delivery","action"],prompt:"Turn negotiated outcomes into measurable implementation, responsible institutions, finance, timelines, reporting and review."}
   ];
 
-  var COP31_PRINCIPLES=[
+  var COP31_CURRENT_FACTS={date:"2026-10-08",host:"Türkiye",city:"Antalya",conferenceDates:"9–20 November 2026",presidentDesignate:"Murat Kurum",presidentOfNegotiations:"Chris Bowen",agendaNotice:"UNFCCC says provisional agendas for COP31, CMP21, CMA8, SBSTA65 and SBI65 were made available on 8 September 2026."};
+
+var COP31_PRINCIPLES=[
     "Treat official UNFCCC/COP31 documents as the primary source for conference procedure and negotiated text.",
     "Treat national governments/Permanent Missions as primary sources for a country's current position.",
     "Separate verified fact, inference and tactical advice.",
@@ -60,7 +62,7 @@
       "Negotiation objective: "+(objective||"not specified"),
       "COP31 source discipline:\n"+COP31_PRINCIPLES.map(function(x){return "- "+x}).join("\n"),
       "Official current-source pack:\n"+sourceText(),
-      "COP31 presidency/process note: Türkiye hosts COP31 in Antalya; UNFCCC lists COP31, CMP21, CMA8, SBSTA65 and SBI65 provisional agendas. The Presidency has emphasized dialogue, consensus and action. Verify any evolving procedural detail against the current UNFCCC materials.",
+      "COP31 presidency/process note: Türkiye hosts COP31 in Antalya; UNFCCC lists COP31, CMP21, CMA8, SBSTA65 and SBI65 provisional agendas. The Presidency has emphasized dialogue, consensus and action. UNFCCC currently identifies Murat Kurum as President-designate and Chris Bowen as President of Negotiations. Verify any evolving procedural detail against the current UNFCCC materials.",
       "Known negotiation architecture: Parties negotiate through formal/informal settings and subsidiary bodies; final outcomes depend on the applicable body's mandate and conference rules. This app must not invent a procedural vote threshold where consensus practice or conference-specific rules apply.",
       "Climate issue guardrails: distinguish mitigation, adaptation, loss and damage, finance, technology transfer, capacity-building, transparency and just transition; distinguish NDCs from BTRs and distinguish COP decisions from CMA decisions."
     ].join("\n\n");
