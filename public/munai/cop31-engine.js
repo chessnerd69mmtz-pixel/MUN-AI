@@ -5,7 +5,7 @@
   var COP31_SOURCES=[
     {name:"UNFCCC COP31 hub",url:"https://unfccc.int/cop31",why:"Official conference hub, session links and current announcements."},
     {name:"COP31 pre-session documents",url:"https://unfccc.int/event/cop-31",why:"Official COP31 documents and agenda materials."},
-    {name:"COP31 provisional agenda",url:"https://unfccc.int/documents/660056",why:"Official provisional agenda and annotations."},
+    {name:"COP31 provisional agenda",url:"https://unfccc.int/documents/660055",why:"Official provisional agenda and annotations."},
     {name:"CMA8 provisional agenda",url:"https://unfccc.int/documents/660055",why:"Paris Agreement governing-body agenda material."},
     {name:"COP31 Road to Antalya",url:"https://unfccc.int/cop31/the-road-to-antalya",why:"Presidency communications and process updates."},
     {name:"COP31 participant information",url:"https://unfccc.int/cop31/ifp",why:"Official participant/process information."},
