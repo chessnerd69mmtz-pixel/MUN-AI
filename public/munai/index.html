@@ -91,8 +91,12 @@ if(state.focus==="agenda2")return state.profile.agenda2||"Agenda 2 not configure
 return "Agenda 1: "+(state.profile.agenda1||"Not configured")+"\\nAgenda 2: "+(state.profile.agenda2||"Not configured");
 }
 function agendaSummary(){
-var a1=state.profile.agenda1||"Agenda 1 not configured",a2=state.profile.agenda2||"Agenda 2 not configured";
-return "<div class='agenda-board'><div class='agenda-card'><small>Agenda 1</small><b>"+esc(a1)+"</b><p>"+(a1==="Agenda 1 not configured"?"Add the first agenda in your profile.":"Ready for research, strategy and drafting.")+"</p></div><div class='agenda-card a2'><small>Agenda 2</small><b>"+esc(a2)+"</b><p>"+(a2==="Agenda 2 not configured"?"Optional second agenda.":"Ready to work alongside Agenda 1.")+"</p></div></div>"
+var a1=state.profile.agenda1||"",a2=state.profile.agenda2||"";
+if(!a1.trim()&&!a2.trim())return "";
+var html="<div class='agenda-board'>";
+if(a1.trim())html+="<div class='agenda-card'><small>Agenda 1</small><b>"+esc(a1)+"</b></div>";
+if(a2.trim())html+="<div class='agenda-card a2'><small>Agenda 2</small><b>"+esc(a2)+"</b></div>";
+return html+"</div>"
 }
 function aiPage(h,mode,lead,def){
 return "<section class='card'><h2>"+h+"</h2><p class='lead'>"+lead+"</p><div class='agenda-picker'><span class='label'>Work on</span><button class='focus-btn "+(state.focus==="agenda1"?"active":"")+"' data-focus='agenda1'>Agenda 1</button><button class='focus-btn "+(state.focus==="agenda2"?"active":"")+"' data-focus='agenda2'>Agenda 2</button><button class='focus-btn "+(state.focus==="both"?"active":"")+"' data-focus='both'>Both agendas</button></div><div class='meta-strip'><span class='meta-chip'>Country: "+esc(state.profile.country||"Not set")+"</span><span class='meta-chip'>Committee: "+esc(state.profile.committee||"Not set")+"</span><span class='meta-chip'>Focus: "+agendaLabel(state.focus)+"</span></div><div class='form' style='margin-top:13px'><textarea class='textarea' id='prompt' placeholder='What should MUN AI do?'>"+esc(state[mode+"Prompt"]||def)+"</textarea><div class='toolbar'><button class='btn primary' id='runAI'>Run "+h+"</button><button class='btn light' id='saveOutput'>Save response</button></div></div><div id='out'>"+formatResponse(state[mode]||"",h,state.provider||"")+"</div></section>"
