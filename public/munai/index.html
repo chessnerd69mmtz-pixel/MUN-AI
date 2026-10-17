@@ -81,7 +81,7 @@ state.focus=state.focus||"both";
 var tab="home";
 function save(){localStorage.setItem(K,JSON.stringify(state))}
 function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])})}
-var tabs=[["home","⌂","Home"],["profile","◎","Delegate Profile"],["cop31","◈","COP31 Mode"],["research","⌕","Research"],["strategy","⚑","Strategy Lab"],["speech","◉","Speech Studio"],["position","▤","Position Paper Studio"],["resolution","▥","Resolution Studio"],["niv","✦","Niv AI"],["documents","▦","Saved Documents"],["settings","⚙","API Settings"]];
+var tabs=[["home","⌂","Home"],["profile","◎","Delegate Profile"],["research","⌕","Research"],["strategy","⚑","Strategy Lab"],["speech","◉","Speech Studio"],["position","▤","Position Paper Studio"],["resolution","▥","Resolution Studio"],["niv","✦","Niv AI"],["documents","▦","Saved Documents"],["settings","⚙","API Settings"]];
 function title(){var m={home:"Home",profile:"Delegate Profile",cop31:"COP31 Mode",research:"Research",strategy:"Strategy Lab",speech:"Speech Studio",position:"Position Paper Studio",resolution:"Resolution Studio",niv:"Niv AI",documents:"Saved Documents",settings:"API Settings"};return m[tab]||"MUN AI"}
 function navHtml(){var h="";for(var i=0;i<tabs.length;i++){h+="<button class='"+(tab===tabs[i][0]?"active":"")+"' data-tab='"+tabs[i][0]+"'>"+tabs[i][1]+" &nbsp; "+tabs[i][2]+"</button>"}return h}
 function agendaLabel(a){return a==="agenda1"?"Agenda 1":a==="agenda2"?"Agenda 2":"Both agendas"}
@@ -128,14 +128,7 @@ if(tab==="speech")return aiPage("Speech Studio","speech","Draft a natural spoken
 if(tab==="position")return aiPage("Position Paper Studio","position","Build a country-specific position paper grounded in the selected committee, agenda, evidence, and policy priorities.","Draft a formal Model UN position paper for my assigned country and committee. Use an opening overview of the issue, my country’s position and relevant policy, previous international action, proposed solutions, and credible source leads. Keep claims and citations verifiable; mark information that needs checking. Maintain the country’s defensible stance and do not invent official policy.");
 if(tab==="resolution")return aiPage("Resolution Studio","resolution","Draft realistic preambulatory and operative clauses from the selected agenda context.","Draft a practical MUN resolution with implementable operative clauses. If both agendas are selected, keep the resolution organized so it is clear which clauses address each agenda.");
 if(tab==="niv")return aiPage("Niv AI","niv","Ask for a direct next move, response, POI or alliance approach using the selected agenda context.","Give me the next best move in committee and exact wording I can use. When both agendas are selected, tell me which agenda the move belongs to.");
-if(tab==="cop31"){
-var trackOpts="",issueOpts="";
-for(var ti in COP31_TRACKS){trackOpts+="<option value='"+esc(ti)+"' "+(state.cop31.track===ti?"selected":"")+">"+esc(COP31_TRACKS[ti].label)+"</option>"}
-for(var ii=0;ii<COP31_ISSUES.length;ii++){var ci=COP31_ISSUES[ii];issueOpts+="<option value='"+esc(ci.id)+"' "+(state.cop31.issue===ci.id?"selected":"")+">"+esc(ci.name)+"</option>"}
-var src="";
-for(var si=0;si<COP31_SOURCES.length;si++){var cs=COP31_SOURCES[si];src+="<li><a href='"+esc(cs.url)+"' target='_blank' rel='noopener'>"+esc(cs.name)+"</a><span>"+esc(cs.why)+"</span></li>"}
-return "<section class='hero'><h2>COP31 Intelligence Mode</h2><p>Built for the 2026 Antalya process. Niv keeps the conference track, climate issue, assigned country and negotiation objective in context, while separating verified facts from tactical advice.</p><div class='meta-strip'><span class='meta-chip'>Antalya · November 2026</span><span class='meta-chip'>UNFCCC source-first</span><span class='meta-chip'>Country-specific</span><span class='meta-chip'>Negotiation-aware</span></div></section><div class='grid'><div class='card accentC'><h3>Conference track</h3><select class='select' id='copTrack'>"+trackOpts+"</select><p class='muted' style='margin-top:9px'>Choose the actual negotiating body. COP31, CMA8, CMP21, SBSTA65 and SBI65 are not interchangeable.</p></div><div class='card accentG'><h3>Negotiation issue</h3><select class='select' id='copIssue'>"+issueOpts+"</select><p class='muted' style='margin-top:9px'>Issue-specific retrieval prevents generic climate answers.</p></div><div class='card accentP'><h3>Delegation</h3><div class='meta-strip'><span class='meta-chip'>Country: "+esc(state.profile.country||"Not set")+"</span><span class='meta-chip'>Committee: "+esc(state.profile.committee||"Not set")+"</span></div><p class='muted'>Set the country in Delegate Profile before relying on country-specific strategy.</p></div></div><section class='card' style='margin-top:14px'><h2>Live negotiation task</h2><p class='lead'>Tell Niv what is happening in the room. It will return an immediate move, evidence requirements, likely allies/opposition, compromise language and fallback positions.</p><textarea class='textarea' id='copObjective' placeholder='Example: The EU is pushing stronger methane language. We are India. Find our defensible response, likely allies, compromise wording and red lines.'>"+esc(state.cop31.objective)+"</textarea><div class='toolbar' style='margin-top:10px'><button class='btn primary' id='runAI'>Run COP31 Intelligence</button><button class='btn light' id='saveOutput'>Save response</button></div><div class='notice success' style='margin-top:12px'><b>Source discipline:</b> Niv must not invent current NDCs, finance pledges, red lines, alliances, procedural thresholds or country positions. Current claims should be checked against the official source pack below.</div><div id='out'>"+formatResponse(state.cop31.research||"","COP31 Intelligence",state.provider||"")+"</div></section><section class='card' style='margin-top:14px'><h2>Official COP31 source pack</h2><p class='lead'>These are the primary sources Niv is instructed to prioritize for current COP31 work.</p><ul class='response-content' style='padding:0 0 0 20px'>"+src+"</ul></section>";
-}
+
 if(tab==="documents"){var list="";for(var i=0;i<state.docs.length;i++){list+="<div class='doc'><b>"+esc(state.docs[i].title)+"</b><small>"+new Date(state.docs[i].createdAt).toLocaleString()+"</small><div style='margin-top:9px'>"+formatResponse(state.docs[i].content,state.docs[i].title,"Saved")+"</div><div class='toolbar' style='margin-top:8px'><button class='btn ghost' data-copy='"+i+"'>Copy</button><button class='btn ghost' data-del='"+i+"'>Delete</button></div></div>"}if(!list)list="<div class='notice'>No saved documents yet.</div>";return "<section class='card'><h2>Saved Documents</h2><p class='lead'>Saved locally in this browser. Responses keep their readable formatting when stored.</p><div class='form'><input class='input' id='docTitle' placeholder='Document title'><textarea class='textarea' id='docContent' placeholder='Paste or write a document here'></textarea><button class='btn primary' id='saveDoc'>Save document</button></div><div style='margin-top:18px'>"+list+"</div></section>"}
 return "";
 }
@@ -170,7 +163,7 @@ var out=document.getElementById("out");
 var prompt=(document.getElementById("prompt").value||"").trim();
 if(!prompt){out.innerHTML="<div class='error-box'>Enter a request first.</div>";return}
 state[mode+"Prompt"]=prompt;save();
-if(mode==="cop31"){state.cop31.objective=prompt;save()}
+
 out.innerHTML="<div class='response-shell'><div class='loading'><span class='spinner'></span><span id='nivLoadingText'>Analyzing your request and selecting only relevant MUN context…</span></div></div>";
 var preferred=ollamaOnly?"ollama":(state.keys.provider||"auto");if(preferred==="openai")preferred="auto";
 var provider=preferred;
@@ -178,16 +171,16 @@ if(provider==="auto")provider=state.keys.groq?"groq":state.keys.mistral?"mistral
 var key=provider==="groq"?state.keys.groq:provider==="mistral"?state.keys.mistral:"";
 if(provider!=="ollama"&&!key){out.innerHTML="<div class='error-box'>Choose <b>Ollama (local)</b> or enter your own Groq/Mistral API key in AI Settings.</div>";return}
 var delegateContext="Country/delegation: "+(state.profile.country||"Not set")+"\nCommittee: "+(state.profile.committee||"Not set")+"\nAgenda 1: "+(state.profile.agenda1||"Not configured")+"\nAgenda 2: "+(state.profile.agenda2||"Not configured")+"\nSelected focus: "+agendaLabel(state.focus);
-var selected=selectedAgendas();
+var selected=selectedAgendas();\n\nCOMMITTEE SPECIALIZATION CONTRACT:\nIdentify the actual committee in the delegate profile and tailor each answer to its mandate, procedures, vocabulary, jurisdiction and realistic tools. COP31 is not a separate mode; users can enter COP31 in the Committee field. Apply equally rigorous specialization to standard and crisis committees, including DISEC (disarmament, international security and arms control), UNODC (crime prevention, drugs, trafficking and justice cooperation), CCC (use the exact expansion supplied by the user; do not guess ambiguous acronyms), HCC (crisis-room decision-making, directives, portfolio powers and time-sensitive developments), and other committees. If an acronym is ambiguous, ask or state the assumption briefly. Use real committee mandates and procedural rules; distinguish verified facts from strategic inference, preserve the assigned country's stance, and never invent powers, rules, citations or official policy. For crisis committees, prioritize actionable directives and evolving crisis context; for standard committees, prioritize mandate-grounded policy, evidence, negotiation strategy and implementable clauses.
 var baseUser=prompt+"\n\nSELECTED AGENDA CONTEXT:\n"+selected;
 var history="";
 if(mode==="niv"&&state.nivHistory.length){
 history=state.nivHistory.slice(-6).map(function(m){return String(m.role||"user").toUpperCase()+": "+String(m.content||"").slice(0,1800)}).join("\n\n");
 }
-var system=mode==="position"?"You are a careful Model UN position-paper writer. "+delegateContext+". Produce a formal, country-specific position paper with clear policy logic, credible evidence and practical proposed solutions. Distinguish official policy from inference and never invent sources, quotations or country commitments.":mode==="resolution"?"You are an experienced Model UN resolution drafter. "+delegateContext+". Use correct preambular and operative clause conventions, precise implementable language, and maintain the assigned country's stance. Never invent legal authority, sponsors, votes or treaty obligations.":"You are Niv AI, a practical Model UN tactical assistant. "+delegateContext+". Keep both agendas distinct when both are selected. Answer the user's request directly, use concise Markdown, and never invent facts or citations."+(mode==="cop31"?" You are operating in COP31 Intelligence Mode: identify the exact UNFCCC track, distinguish verified current facts from inference, and prioritize official UNFCCC and national sources.":"");
-if(mode==="cop31")system+="\n\nCOP31 CURRENT INTELLIGENCE:\n"+intelligence;
+var system=mode==="position"?"You are a careful Model UN position-paper writer. "+delegateContext+". Produce a formal, country-specific position paper with clear policy logic, credible evidence and practical proposed solutions. Distinguish official policy from inference and never invent sources, quotations or country commitments.":mode==="resolution"?"You are an experienced Model UN resolution drafter. "+delegateContext+". Use correct preambular and operative clause conventions, precise implementable language, and maintain the assigned country's stance. Never invent legal authority, sponsors, votes or treaty obligations.":"You are Niv AI, a practical Model UN tactical assistant. "+delegateContext+". Keep both agendas distinct when both are selected. Answer the user's request directly, use concise Markdown, and never invent facts or citations.";
+
 var intelligence=window.buildNivIntelligenceContext?window.buildNivIntelligenceContext(state.profile.country||"",state.profile.committee||""):"";
-if(mode==="cop31"&&window.buildCOP31Context){intelligence+="\n\n"+window.buildCOP31Context(state.profile.country||"",state.cop31.track,state.cop31.issue,prompt)}
+if(/cop|unfccc|climate|climate change|cma|cmp|sbsta|sbi/i.test((state.profile.committee||"")+" "+prompt)&&window.buildCOP31Context){intelligence+="\n\nCOMMITTEE-SPECIFIC CLIMATE CONTEXT:\n"+window.buildCOP31Context(state.profile.country||"",state.profile.committee||"COP",state.cop31.issue,prompt)}
 intelligence=String(intelligence||"").slice(0,8000);
 // First classify the request, then decide what reference material is actually worth
 // sending. Tactical questions should not pay the latency cost of the full knowledge base.
@@ -201,7 +194,7 @@ compactUN=String(window.buildMUNUNContext(system+"\n"+baseUser)).slice(0,10000);
 }
 var niv=window.buildNivPrompt?window.buildNivPrompt(prompt,delegateContext,compactUN+"\n\nMUN INTELLIGENCE:\n"+intelligence,history):null;
 if(mode==="niv"&&niv)system=niv.system;
-if(mode==="cop31"){system+="\n\nCOP31 RESPONSE CONTRACT:\n1. State the immediate negotiating move first.\n2. Identify what is verified versus what requires current-source verification.\n3. Map likely allies, swing parties and opposition only when defensible.\n4. Give compromise language plus a fallback and a red-line test.\n5. Check the selected track mandate before proposing institutional action.\n6. Do not invent voting thresholds or consensus rules.\n7. Keep country interests central without fabricating a country position."}
+
 if(mode==="niv"&&window.buildNivTacticalContext){
   var tactical=window.buildNivTacticalContext(state.profile.country||"",state.profile.committee||"",state.profile.agenda1||"",state.profile.agenda2||"",prompt,niv&&niv.task||"general");
   system+="\n\nLOCAL TACTICAL RETRIEVAL — USE ONLY IF RELEVANT:\n"+String(tactical).slice(0,6500);
@@ -245,7 +238,7 @@ throw new Error(apiMsg);
 var answer=d&&d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content;
 if(!answer)throw new Error("No answer was returned by the AI provider.");
 state[mode]=String(answer);
-if(mode==="cop31")state.cop31.research=String(answer);
+
 state.provider=provider==="ollama"?"Ollama (local)":provider;
 if(mode==="niv")state.nivHistory=state.nivHistory.concat([{role:"user",content:prompt},{role:"assistant",content:String(answer)}]).slice(-12);
 save();
