@@ -82,7 +82,7 @@ var tab="home";
 function save(){localStorage.setItem(K,JSON.stringify(state))}
 function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])})}
 var tabs=[["home","⌂","Home"],["profile","◎","Delegate Profile"],["research","⌕","Research"],["strategy","⚑","Strategy Lab"],["speech","◉","Speech Studio"],["position","▤","Position Paper Studio"],["resolution","▥","Resolution Studio"],["niv","✦","Niv AI"],["documents","▦","Saved Documents"],["settings","⚙","API Settings"]];
-function title(){var m={home:"Home",profile:"Delegate Profile",cop31:"COP31 Mode",research:"Research",strategy:"Strategy Lab",speech:"Speech Studio",position:"Position Paper Studio",resolution:"Resolution Studio",niv:"Niv AI",documents:"Saved Documents",settings:"API Settings"};return m[tab]||"MUN AI"}
+function title(){var m={home:"Home",profile:"Delegate Profile",research:"Research",strategy:"Strategy Lab",speech:"Speech Studio",position:"Position Paper Studio",resolution:"Resolution Studio",niv:"Niv AI",documents:"Saved Documents",settings:"API Settings"};return m[tab]||"MUN AI"}
 function navHtml(){var h="";for(var i=0;i<tabs.length;i++){h+="<button class='"+(tab===tabs[i][0]?"active":"")+"' data-tab='"+tabs[i][0]+"'>"+tabs[i][1]+" &nbsp; "+tabs[i][2]+"</button>"}return h}
 function agendaLabel(a){return a==="agenda1"?"Agenda 1":a==="agenda2"?"Agenda 2":"Both agendas"}
 function selectedAgendas(){
@@ -139,10 +139,7 @@ document.querySelectorAll("[data-focus]").forEach(function(b){b.onclick=function
 var np=document.getElementById("newMUN");if(np)np.onclick=function(){state.profile={name:"MUN 1",country:"",committee:"",agenda1:"",agenda2:""};state.docs=[];state.research="";state.strategy="";state.speech="";state.resolution="";state.niv="";state.nivHistory=[];state.focus="both";save();render()};
 var rs=document.getElementById("reset");if(rs)rs.onclick=function(){state.research="";state.strategy="";state.speech="";state.resolution="";state.niv="";state.nivHistory=[];save();render()};
 if(tab==="profile"){document.getElementById("saveProfile").onclick=function(){state.profile.name=document.getElementById("name").value||"MUN 1";state.profile.country=document.getElementById("country").value;state.profile.committee=document.getElementById("committee").value;state.profile.agenda1=document.getElementById("agenda1").value;state.profile.agenda2=document.getElementById("agenda2").value;save();render()}}
-if(tab==="cop31"){
-document.getElementById("runAI").onclick=function(){state.cop31.track=document.getElementById("copTrack").value;state.cop31.issue=document.getElementById("copIssue").value;state.cop31.objective=document.getElementById("copObjective").value;save();runAI("cop31")};
-document.getElementById("saveOutput").onclick=function(){var text=state.cop31.research||"";if(!text)return;state.docs.unshift({title:"COP31 Intelligence · "+(COP31_TRACKS[state.cop31.track]||COP31_TRACKS.COP31).label+" · "+(window.getCOP31Issue?window.getCOP31Issue(state.cop31.issue).name:"Climate"),content:text,createdAt:new Date().toISOString()});save();tab="documents";render()}
-}
+
 if(tab==="settings"){document.getElementById("saveKeys").onclick=function(){state.keys.provider=document.getElementById("provider").value;state.keys.groq=document.getElementById("groq").value.trim();state.keys.mistral=document.getElementById("mistral").value.trim();state.keys.unlimitless=document.getElementById("unlimitless").value.trim();delete state.keys.openai;save();alert("Keys saved locally in this browser.")}}
 if(["research","strategy","speech","resolution","niv"].indexOf(tab)>=0){
 document.getElementById("runAI").onclick=function(){runAI(tab)};
