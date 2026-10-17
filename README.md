@@ -165,3 +165,10 @@ This repository is prepared to be public:
 ## Notes about verification
 
 The source has been statically checked and the packaged project has been archive-verified. A full `npm install` / production `next build` was not completed in the model build environment when dependencies timed out, so the repository should be treated as a source release that performs its own full dependency install/build on the user's machine through `setup.bat`.
+
+
+## Humanizer writing system
+
+MUN AI incorporates the writing-pattern guidance from [blader/humanizer](https://github.com/blader/humanizer), distributed under the MIT License. The upstream skill and its license are retained in `vendor/humanizer/`.
+
+A shared Humanizer style instruction is applied to Niv AI and the shared generation flow used by Strategy Lab, Speech Studio, Position Paper Studio, Resolution Studio and COP31 mode. Research More uses the same style guidance. It removes formulaic phrasing while preserving country stance, agenda separation, facts, citations, uncertainty and formal UN resolution conventions. This is a writing-quality pass, not a guarantee of human authorship or detector outcomes.
