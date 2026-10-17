@@ -64,8 +64,15 @@ function getLatestUserText(messages) {
   for(let i=(messages||[]).length-1;i>=0;i--)if(messages[i]&&messages[i].role==="user")return String(messages[i].content||"");
   return "";
 }
+function applyHumanizer(body) {
+  if (!body || !Array.isArray(body.messages)) return body;
+  const rules = "FINAL WRITING-QUALITY PASS (apply to every answer): Write naturally for the requested format and audience. Remove formulaic AI phrasing, repetitive conclusions, empty scene-setting, inflated claims, canned transitions, unnecessary bold labels, forced lists of three, and overused em dashes. Vary sentence rhythm and use precise, plain language. Preserve all supported facts, uncertainty, legal nuance, citations, source markers, country stance and requested structure. Never add facts, quotes, statistics, sources, votes, treaty status or country positions. Keep formal diplomatic language for MUN papers and resolutions; do not make official documents casual. For a position paper, use the requested conference format and clear country-specific policy, prior action, proposed solutions and implementable recommendations. For a draft resolution, preserve preambulatory/operative clause conventions, mandate, feasible actors, implementation, funding and monitoring. This is an editing standard, not a request to evade AI-detection systems.";
+  body.messages.push({ role: "system", content: rules });
+  return body;
+}
 async function addResearchContext(body) {
   if(!body||!Array.isArray(body.messages))return {body,researched:false,count:0};
+  applyHumanizer(body);
   const userText=getLatestUserText(body.messages);if(!requestNeedsResearch(userText))return {body,researched:false,count:0};
   const results=await searchWeb(userText);
   if(!results.length){
